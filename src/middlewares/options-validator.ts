@@ -29,7 +29,7 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
     throw error
   }
 
-  ctx.req = value
+  ctx.validatedOptions = value
 
   await next()
 }

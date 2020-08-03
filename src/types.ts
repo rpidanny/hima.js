@@ -1,6 +1,7 @@
 export interface Context {
   options: ImageParams
-  req?: ImageParams
+  validatedOptions?: ImageParams
+  parsedOptions?: ParsedOptions
   output?: Success
 }
 
@@ -14,12 +15,25 @@ export interface Failure {
 }
 
 export interface ImageParams {
-  date?: string
+  date?: string | Date
   zoom?: number
   parallel?: boolean
   infrared?: boolean
   output: string
   timeout?: number
+}
+
+export interface ParsedOptions {
+  date?: string | Date
+  zoom?: number
+  parallel?: boolean
+  infrared?: boolean
+  output: string
+  timeout?: number
+  imageType?: string
+  level?: string
+  now?: Date
+  tiles?: Array<Tile>
 }
 
 export interface ZoomMappings {
@@ -43,4 +57,11 @@ export interface NextFunction {
 
 export interface Middleware {
   (ctx: Context, next: NextFunction): void
+}
+
+export interface Tile {
+  name: string
+  url: string
+  x: number
+  y: number
 }
