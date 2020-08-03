@@ -1,5 +1,19 @@
-const app = (): void => {
-  console.log('hello world')
-}
+import buildMiddlewares from './utils/build-middlewares'
+import optionsValidator from './middlewares/options-validator'
+import optionsParser from './middlewares/options-parser'
 
-export default app
+import * as types from './types'
+
+const executor = buildMiddlewares(optionsValidator, optionsParser)
+
+export const hima = async (options: types.ImageParams): Promise<types.Success | types.Failure> => {
+  const ctx: types.Context = { options }
+
+  await executor(ctx)
+
+  if (ctx.output) {
+    return ctx.output
+  } else {
+    throw new Error('Failed to perform task..')
+  }
+}
