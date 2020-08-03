@@ -1,0 +1,51 @@
+{
+  "name": "hima.js",
+  "version": "1.0.0",
+  "description": "Download images from Himawari-8 Geo-Stationary Satellite",
+  "main": "dist/index.ts",
+  "bin": {
+    "hima": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc src/*.ts --outDir dist",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "npm run lint && jest ./test/unit/*"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpidanny/hima.js.git"
+  },
+  "keywords": [
+    "himawari"
+  ],
+  "author": "Abhishek <abhishek.rpidanny@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rpidanny/hima.js/issues"
+  },
+  "homepage": "https://github.com/rpidanny/hima.js#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.9.7"
+  }
+}
