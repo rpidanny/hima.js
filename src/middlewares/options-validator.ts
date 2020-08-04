@@ -8,8 +8,8 @@ const imageOptionsValidationSchema = Joi.object()
     zoom: Joi.number().default(1),
     parallel: Joi.boolean().default(true),
     infrared: Joi.boolean().default(false),
-    output: Joi.string().required(),
-    timeout: Joi.number().default(30000),
+    output: Joi.string().optional(),
+    timeout: Joi.number().default(60000),
   })
   .default({
     date: 'latest',

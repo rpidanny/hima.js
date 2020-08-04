@@ -6,12 +6,11 @@ import * as types from '../types'
 export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
   const { parsedOptions } = ctx
   const width = 550
-  console.log('Parsed Options: ', parsedOptions)
 
   if (parsedOptions) {
-    const { level, now } = parsedOptions
+    const { level, now, imageType, output } = parsedOptions
 
-    if (level !== undefined && now !== undefined) {
+    if (level !== undefined && now !== undefined && imageType) {
       const blocks: number = parseInt(level.replace(/[a-zA-Z]/g, ''), 10)
 
       // Normalize our date
@@ -24,17 +23,18 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
       const month = moment(now).format('MM')
       const day = moment(now).format('DD')
 
-      const urlPrefix = [config.baseUrl, level, width, year, month, day, time].join('/')
+      const urlPrefix = [config.baseUrl, imageType, level, width, year, month, day, time].join('/')
+      const outfile = output || './' + [year, month, day, '_', time, '.jpg'].join('')
 
       // Compose our requests
       const tiles: Array<types.Tile> = []
       for (let x = 0; x < blocks; x++) {
         for (let y = 0; y < blocks; y++) {
           tiles.push({
+            url: `${urlPrefix}_${x}_${y}.png`,
             name: `${x}_${y}.png`,
             x: x,
             y: y,
-            url: `${urlPrefix}_${x}_${y}.png`,
           })
         }
       }
@@ -42,8 +42,12 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
       ctx.parsedOptions = {
         ...parsedOptions,
         tiles,
+        output: outfile,
       }
+      console.time(`Downloaded ${tiles.length} tiles in `)
+      console.log(`Downloading ${tiles.length} tiles:`)
       await next()
+      console.timeEnd(`Downloaded ${tiles.length} tiles in `)
     }
   }
 }

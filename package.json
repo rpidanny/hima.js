@@ -37,7 +37,9 @@
   },
   "homepage": "https://github.com/rpidanny/hima.js#readme",
   "devDependencies": {
+    "@types/gm": "^1.18.9",
     "@types/hapi__joi": "^17.1.4",
+    "@types/tmp": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
     "eslint": "^7.6.0",
@@ -53,7 +55,9 @@
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "gm": "^1.23.1",
     "got": "^11.5.1",
-    "moment": "^2.27.0"
+    "moment": "^2.27.0",
+    "tmp": "^0.2.1"
   }
 }

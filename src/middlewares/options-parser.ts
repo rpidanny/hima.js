@@ -6,7 +6,6 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
   const { validatedOptions } = ctx
 
   if (validatedOptions) {
-    console.log('ValidOptions: ', validatedOptions)
     const { date, infrared, zoom } = validatedOptions
 
     if (infrared !== undefined && zoom !== undefined && date !== undefined) {

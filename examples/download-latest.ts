@@ -1,7 +1,7 @@
 import { hima } from '../src'
 
 hima({
-  output: './output',
+  zoom: 3,
 })
   .then(console.log)
   .catch(console.error)

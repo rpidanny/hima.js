@@ -1,3 +1,4 @@
+import { DirResult } from 'tmp'
 export interface Context {
   options: ImageParams
   validatedOptions?: ImageParams
@@ -7,6 +8,9 @@ export interface Context {
 
 export interface Success {
   status: string
+  data: {
+    output: string
+  }
 }
 
 export interface Failure {
@@ -19,7 +23,7 @@ export interface ImageParams {
   zoom?: number
   parallel?: boolean
   infrared?: boolean
-  output: string
+  output?: string
   timeout?: number
 }
 
@@ -28,12 +32,13 @@ export interface ParsedOptions {
   zoom?: number
   parallel?: boolean
   infrared?: boolean
-  output: string
+  output?: string
   timeout?: number
   imageType?: string
   level?: string
   now?: Date
   tiles?: Array<Tile>
+  tempDir?: DirResult
 }
 
 export interface ZoomMappings {
