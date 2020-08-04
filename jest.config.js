@@ -4,5 +4,5 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
-  setupFilesAfterEnv: ['./test/setup-test.ts'],
+  setupFilesAfterEnv: ['./test/setup-test.js'],
 }
