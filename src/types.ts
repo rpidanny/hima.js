@@ -13,11 +13,6 @@ export interface Success {
   }
 }
 
-export interface Failure {
-  message: string
-  code: number
-}
-
 export interface ImageParams {
   date?: string | Date
   zoom?: number

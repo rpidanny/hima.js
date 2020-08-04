@@ -15,7 +15,7 @@ const executor = buildMiddlewares(
   stitchTiles,
 )
 
-export const hima = async (options: types.ImageParams): Promise<types.Success | types.Failure> => {
+export const hima = async (options: types.ImageParams): Promise<types.Success> => {
   const ctx: types.Context = { options }
 
   await executor(ctx)
