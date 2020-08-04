@@ -7,7 +7,7 @@
     "hima": "dist/index.js"
   },
   "scripts": {
-    "build": "./node_modules/.bin/tsc --esModuleInterop src/*.ts --outDir dist",
+    "build": "tsc",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && jest ./test/*",
