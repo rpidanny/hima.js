@@ -24,6 +24,7 @@ const imageOptionsValidationSchema = Joi.object()
     batchSize: Joi.number().default(20),
     timeout: timeoutValidationSchema,
     debug: Joi.boolean().default(false),
+    progress: Joi.function().optional(),
   })
   .default({
     date: 'latest',

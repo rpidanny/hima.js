@@ -13,7 +13,8 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && jest ./test/*",
     "dev": "ts-node examples/download-color.ts",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "hima": "node ./cli.js"
   },
   "husky": {
     "hooks": {
@@ -45,6 +46,7 @@
     "@commitlint/config-conventional": "^9.1.1",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
+    "@types/cli-progress": "^3.7.0",
     "@types/fs-extra": "^9.0.1",
     "@types/gm": "^1.18.9",
     "@types/hapi__joi": "^17.1.4",
@@ -68,7 +70,7 @@
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
-    "chalk": "^4.1.0",
+    "cli-progress": "^3.8.2",
     "commander": "^6.0.0",
     "fs-extra": "^9.0.1",
     "gm": "^1.23.1",

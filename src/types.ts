@@ -18,6 +18,7 @@ export interface RawOptions {
   timeout?: Timeout
   batchSize?: number
   debug?: boolean
+  progress?: ProgressFunction
 }
 
 export interface Timeout {
@@ -41,10 +42,15 @@ export interface Options {
   batchSize?: number
   debug?: boolean
   log?: LogFunction
+  progress?: ProgressFunction
 }
 
 export interface LogFunction {
   (...msgs: Array<string>): void
+}
+
+export interface ProgressFunction {
+  (index: number, total: number): void
 }
 
 export interface ZoomMappings {

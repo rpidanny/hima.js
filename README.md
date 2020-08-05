@@ -24,6 +24,7 @@ hima({
   batchSize: 20,
   date: new Date(1581638400000), // 2020/02/14
   debug: true,
+  progress: (completed, total) => console.log(`Completed ${completed}/${total}`)
 })
   .then(console.log)
   .catch(console.error)
@@ -47,6 +48,7 @@ Type: `object`
 | `batchSize`  | `20`           | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. |
 | `debug`      | `false`        | `boolean`         | enable logs?      |
 | `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   |
+| `progress`   | `None`         | `function`        | A callback function that is called on progress update. Receives two parameters: (`completed`, `total`) |
 
 ## Development
 

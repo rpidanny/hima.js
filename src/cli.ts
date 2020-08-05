@@ -1,4 +1,6 @@
 import { Command } from 'commander'
+import cliProgress from 'cli-progress'
+
 import { hima } from './index'
 
 interface InputOpts {
@@ -26,16 +28,25 @@ async function main(): Promise<void> {
 
   const inputOpts = program.opts() as InputOpts
 
-  console.log(inputOpts)
+  console.log('Downloading image')
 
-  await hima({
+  const progressBar = new cliProgress.SingleBar({}, cliProgress.Presets.legacy)
+  progressBar.start(100, 0)
+
+  const response = await hima({
     date: inputOpts.date,
     output: inputOpts.out,
     zoom: parseInt(inputOpts.zoom),
-    batchSize: parseInt(inputOpts.batchSize),
+    batchSize: (inputOpts.batchSize && parseInt(inputOpts.batchSize)) || 20,
     infrared: inputOpts.ir,
     debug: inputOpts.debug,
+    progress: (completed, total) => progressBar.update((completed / total) * 100),
   })
+  progressBar.stop()
+
+  if (response && response.output) {
+    console.log(`File saved at ${response.output}`)
+  }
 }
 
 try {
