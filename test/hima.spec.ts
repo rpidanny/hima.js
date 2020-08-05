@@ -3,38 +3,52 @@ import fs from 'fs-extra'
 import { hima } from '../src'
 import * as types from '../src/types'
 
+const BATCH_SIZE = 5
+
 describe('Hima module', () => {
-  it('Should download color image of zoom 1', async () => {
-    const response: types.Success = await hima({
-      zoom: 1,
+  describe('Download color image of zoom 1', () => {
+    it('should run without fail', async () => {
+      const response: types.Success = await hima({
+        zoom: 1,
+      })
+      await fs.remove(response.output)
+      return response
     })
-    await fs.remove(response.output)
-    return response
   })
 
-  it('Should download color image of zoom 5', async () => {
-    const response: types.Success = await hima({
-      zoom: 5,
+  describe('Download color image of zoom 2', () => {
+    it('Should run without fail', async () => {
+      const response: types.Success = await hima({
+        zoom: 2,
+        batchSize: BATCH_SIZE,
+        date: new Date(1581638400000),
+      })
+      await fs.remove(response.output)
+      return response
     })
-    await fs.remove(response.output)
-    return response
   })
 
-  it('Should download Infra-red image of zoom 1', async () => {
-    const response: types.Success = await hima({
-      zoom: 1,
-      infrared: true,
+  describe('Download infra-red images of zoom 1', () => {
+    it('Should run without fail', async () => {
+      const response: types.Success = await hima({
+        zoom: 1,
+        infrared: true,
+      })
+      await fs.remove(response.output)
+      return response
     })
-    await fs.remove(response.output)
-    return response
   })
 
-  it('Should download Infra-red image of zoom 3', async () => {
-    const response: types.Success = await hima({
-      zoom: 3,
-      infrared: true,
+  describe('Download infra-red images of zoom 2', () => {
+    it('Should run without fail', async () => {
+      const response: types.Success = await hima({
+        zoom: 2,
+        batchSize: BATCH_SIZE,
+        infrared: true,
+        date: new Date(1581638400000),
+      })
+      await fs.remove(response.output)
+      return response
     })
-    await fs.remove(response.output)
-    return response
   })
 })

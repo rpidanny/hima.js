@@ -16,7 +16,7 @@ const timeoutValidationSchema = Joi.object()
 
 const imageOptionsValidationSchema = Joi.object()
   .keys({
-    date: Joi.date() || Joi.string().default('latest'),
+    date: Joi.alternatives().try(Joi.date(), Joi.string()).default('latest'),
     zoom: Joi.number().default(1),
     parallel: Joi.boolean().default(true),
     infrared: Joi.boolean().default(false),

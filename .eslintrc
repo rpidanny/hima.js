@@ -46,6 +46,13 @@
 
     "@typescript-eslint/no-use-before-define": ["error", { "functions": false }],
 
-    "require-atomic-updates": "off"
+    "require-atomic-updates": "off",
+
+    "@typescript-eslint/no-explicit-any": [
+      "warn",
+      {
+        "ignoreRestArgs": true
+      }
+    ]
   }
 }
