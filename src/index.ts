@@ -1,13 +1,13 @@
-import buildMiddlewares from './utils/build-middlewares'
-import optionsValidator from './middlewares/options-validator'
-import optionsParser from './middlewares/options-parser'
-import urlGenerator from './middlewares/url-generator'
-import downloadTiles from './middlewares/download-tiles'
-import stitchTiles from './middlewares/stitch-tiles'
+import buildPipeline from './utils/build-pipeline'
+import optionsValidator from './steps/options-validator'
+import optionsParser from './steps/options-parser'
+import urlGenerator from './steps/url-generator'
+import downloadTiles from './steps/download-tiles'
+import stitchTiles from './steps/stitch-tiles'
 
 import * as types from './types'
 
-const executor = buildMiddlewares(
+const executor = buildPipeline(
   optionsValidator,
   optionsParser,
   urlGenerator,
@@ -16,7 +16,7 @@ const executor = buildMiddlewares(
 )
 
 export const hima = async (options: types.ImageParams): Promise<types.Success> => {
-  const ctx: types.Context = { options }
+  const ctx: types.Context = { rawOptions: options }
 
   await executor(ctx)
 

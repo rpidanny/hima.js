@@ -1,16 +1,12 @@
 import { DirResult } from 'tmp'
 export interface Context {
-  options: ImageParams
-  validatedOptions?: ImageParams
-  parsedOptions?: ParsedOptions
+  rawOptions: ImageParams
+  options?: Options
   output?: Success
 }
 
 export interface Success {
-  status: string
-  data: {
-    output: string
-  }
+  output: string
 }
 
 export interface ImageParams {
@@ -22,7 +18,7 @@ export interface ImageParams {
   timeout?: number
 }
 
-export interface ParsedOptions {
+export interface Options {
   date?: string | Date
   zoom?: number
   parallel?: boolean
@@ -55,7 +51,7 @@ export interface NextFunction {
   (): void
 }
 
-export interface Middleware {
+export interface Step {
   (ctx: Context, next: NextFunction): void
 }
 
