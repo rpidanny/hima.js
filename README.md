@@ -1,8 +1,5 @@
-# hima.js
-
-Download image(s) from images captured by Himawari-8 Geo-Stationary Satellite.
-
-> Based on [himawari.js](https://github.com/jakiestfu/himawari.js/)
+![alt text](banner.png "hima.js")
+> Based off of [himawari.js](https://github.com/jakiestfu/himawari.js/)
 
 ## Highlights
 
