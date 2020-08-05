@@ -71,6 +71,7 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "cli-progress": "^3.8.2",
+    "colors": "^1.4.0",
     "commander": "^6.0.0",
     "fs-extra": "^9.0.1",
     "gm": "^1.23.1",

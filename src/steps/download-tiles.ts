@@ -48,7 +48,7 @@ const downloadBatch = async (
     )
     finalResponse.concat(response)
     if (progress) {
-      completedTiles += miniBatches[1].length
+      completedTiles += miniBatches[i].length
       progress(completedTiles, totalTiles)
     }
   }
