@@ -16,21 +16,6 @@ $ npm install --save hima
 
 ## Usage
 
-```js
-import { hima } from 'hima'
-
-hima({
-  zoom: 1,
-  batchSize: 20,
-  date: new Date(1581638400000), // 2020/02/14
-  debug: true,
-  progress: (completed, total) => console.log(`Completed ${completed}/${total}`)
-})
-  .then(console.log)
-  .catch(console.error)
-
-```
-
 ### API
 
 #### hima(options?)
@@ -49,6 +34,42 @@ Type: `object`
 | `debug`      | `false`        | `boolean`         | enable logs?      |
 | `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   |
 | `progress`   | `None`         | `function`        | A callback function that is called on progress update. Receives two parameters: (`completed`, `total`) |
+
+#### Example
+
+```js
+import { hima } from 'hima'
+
+hima({
+  zoom: 1,
+  batchSize: 20,
+  date: new Date(1581638400000), // 2020/02/14
+  debug: true,
+  progress: (completed, total) => console.log(`Completed ${completed}/${total}`)
+})
+  .then(console.log)
+  .catch(console.error)
+
+```
+
+### CLI
+
+Install package globally using:
+
+`$ npm i -g @rpidanny/hima.js`
+
+```bash
+Usage: hima [options]
+
+Options:
+  --out <path>    output directory (default: "./")
+  --date <date>   Date in yyyy/mm/dd hh:mm:ss (default: "latest")
+  --zoom <level>  Zoom level. 1-3 for IR. 1-5 for color (default: "1")
+  --ir            Download Infrared Image (default: false)
+  --batch-size    How many tiles to download in parallel?
+  --debug         Enable debug logs? (default: false)
+  -h, --help      display help for command
+```
 
 ## Development
 
