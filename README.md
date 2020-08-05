@@ -68,6 +68,7 @@ Options:
   --ir            Download Infrared Image (default: false)
   --batch-size    How many tiles to download in parallel?
   --debug         Enable debug logs? (default: false)
+  --quiet         Disable all logs? (default: false)
   -h, --help      display help for command
 ```
 
