@@ -8,9 +8,9 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
   const width = 550
 
   if (options) {
-    const { level, now, imageType, output } = options
+    const { level, now, imageType, output, log } = options
 
-    if (level !== undefined && now !== undefined && imageType) {
+    if (level !== undefined && now !== undefined && imageType && log) {
       const blocks: number = parseInt(level.replace(/[a-zA-Z]/g, ''), 10)
 
       // Normalize our date
@@ -44,10 +44,11 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
         tiles,
         output: outfile,
       }
-      console.time(`Downloaded ${tiles.length} tiles in `)
-      console.log(`Downloading ${tiles.length} tiles:`)
+      const startTime = new Date().getMilliseconds()
+      log(`Downloading ${tiles.length} tiles:`)
       await next()
-      console.timeEnd(`Downloaded ${tiles.length} tiles in `)
+      const elapsedTime = new Date().getMilliseconds() - startTime
+      log(`Downloaded ${tiles.length} tiles in ${elapsedTime / 1000}s`)
     }
   }
 }

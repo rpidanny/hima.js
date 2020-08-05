@@ -3,7 +3,7 @@ import got, { Response } from 'got'
 import * as types from '../types'
 import config from '../config'
 
-const getLatestDate = async (imageType: string): Promise<Date> => {
+const getLatestDate = async (imageType: string, log: types.LogFunction): Promise<Date> => {
   const url = `${config.baseUrl}/${imageType}/latest.json`
   try {
     const response: Response<string> = await got(url, {
@@ -16,22 +16,25 @@ const getLatestDate = async (imageType: string): Promise<Date> => {
     }
     return new Date()
   } catch (err) {
-    console.error(err)
-    console.log('Failed to get latest date. Setting it to new Date()')
+    log(err.message, 'Failed to get latest date. Setting it to new Date().')
     return new Date()
   }
 }
 
 const parseDate = async (options: types.Options): Promise<Date> => {
-  const { date, imageType } = options
-  if (typeof date === 'string' || typeof date === 'number') {
-    if (date === 'latest' && imageType) {
-      return await getLatestDate(imageType)
+  const { date, imageType, log } = options
+  if (date !== undefined && imageType && log) {
+    if (typeof date === 'string' || typeof date === 'number') {
+      if (date === 'latest' && imageType) {
+        return await getLatestDate(imageType, log)
+      } else {
+        return new Date(date)
+      }
     } else {
-      return new Date(date)
+      return date || new Date()
     }
   } else {
-    return date || new Date()
+    throw new Error('Invalid input')
   }
 }
 

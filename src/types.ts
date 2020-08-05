@@ -17,6 +17,7 @@ export interface RawOptions {
   output?: string
   timeout?: Timeout
   batchSize?: number
+  debug?: boolean
 }
 
 export interface Timeout {
@@ -38,6 +39,12 @@ export interface Options {
   tiles?: Array<Tile>
   tempDir?: DirResult
   batchSize?: number
+  debug?: boolean
+  log?: LogFunction
+}
+
+export interface LogFunction {
+  (...msgs: Array<string>): void
 }
 
 export interface ZoomMappings {

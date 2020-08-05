@@ -2,13 +2,24 @@ import { parseDate } from '../utils/dates'
 import * as types from '../types'
 import { getImageTypeString, zoomLevelMapper } from '../utils/mappers'
 
+const getLogger = (debug: boolean): types.LogFunction => {
+  const enable = debug
+  return (...msgs: Array<string>) => {
+    if (enable) {
+      const messages = msgs
+      messages.unshift('[hima]')
+      console.log(...messages)
+    }
+  }
+}
+
 export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
   const { options } = ctx
 
   if (options) {
-    const { date, infrared, zoom } = options
+    const { date, infrared, zoom, debug } = options
 
-    if (infrared !== undefined && zoom !== undefined && date !== undefined) {
+    if (infrared !== undefined && zoom !== undefined && date !== undefined && debug !== undefined) {
       const imageType: string = getImageTypeString(infrared)
       const level: string = zoomLevelMapper(imageType, zoom)
 
@@ -16,6 +27,7 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
         ...options,
         imageType,
         level,
+        log: getLogger(debug),
       }
 
       const date: Date = await parseDate(ctx.options)
@@ -23,7 +35,7 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
 
       await next()
     } else {
-      console.log('Invalid Input')
+      throw new Error('Invalid Input')
     }
   }
 }

@@ -23,6 +23,7 @@ const imageOptionsValidationSchema = Joi.object()
     output: Joi.string().optional(),
     batchSize: Joi.number().default(20),
     timeout: timeoutValidationSchema,
+    debug: Joi.boolean().default(false),
   })
   .default({
     date: 'latest',
@@ -35,6 +36,7 @@ const imageOptionsValidationSchema = Joi.object()
       response: 15000,
       request: 30000,
     },
+    debug: false,
   })
 
 export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {

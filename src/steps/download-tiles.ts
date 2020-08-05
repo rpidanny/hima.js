@@ -14,11 +14,12 @@ const downloadBatch = async (
   timeout: types.Timeout,
   batchSize: number,
   outputPath: string,
+  log: types.LogFunction,
 ): Promise<void[]> => {
   const miniBatches = chunk(tiles, batchSize)
   const finalResponse: Array<any> = []
   for (let i = 0; i < miniBatches.length; i++) {
-    console.log(`Downloading batch ${i}/${miniBatches.length - 1} of size ${miniBatches[i].length}`)
+    log(`Downloading batch ${i}/${miniBatches.length - 1} of size ${miniBatches[i].length}`)
     const response: Array<any> = await Promise.all(
       miniBatches[i].map(async (tile: types.Tile) => {
         const file = `${outputPath}/${tile.name}`
@@ -50,12 +51,12 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
   const { options } = ctx
 
   if (options) {
-    const { tiles, timeout, output, batchSize } = options
-    if (tiles && timeout && output && batchSize) {
+    const { tiles, timeout, output, batchSize, log } = options
+    if (tiles && timeout && output && batchSize && log) {
       const tempDir: DirResult = mktemp.dirSync({ unsafeCleanup: true })
 
       if (tempDir && tempDir.name) {
-        await downloadBatch(tiles, timeout, batchSize, tempDir.name)
+        await downloadBatch(tiles, timeout, batchSize, tempDir.name, log)
 
         ctx.options = {
           ...options,
