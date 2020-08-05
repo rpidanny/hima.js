@@ -2,6 +2,18 @@ import Joi from '@hapi/joi'
 
 import * as types from '../types'
 
+const timeoutValidationSchema = Joi.object()
+  .keys({
+    connect: Joi.number().default(2000),
+    response: Joi.number().default(7000),
+    request: Joi.number().default(9000),
+  })
+  .default({
+    connect: 7000,
+    response: 7000,
+    request: 14000,
+  })
+
 const imageOptionsValidationSchema = Joi.object()
   .keys({
     date: Joi.string().default('latest'),
@@ -9,14 +21,18 @@ const imageOptionsValidationSchema = Joi.object()
     parallel: Joi.boolean().default(true),
     infrared: Joi.boolean().default(false),
     output: Joi.string().optional(),
-    timeout: Joi.number().default(60000),
+    timeout: timeoutValidationSchema,
   })
   .default({
     date: 'latest',
     zoom: 1,
     parallel: true,
     infrared: false,
-    timeout: 30000,
+    timeout: {
+      connect: 7000,
+      response: 7000,
+      request: 14000,
+    },
   })
 
 export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {

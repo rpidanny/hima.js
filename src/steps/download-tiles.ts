@@ -10,7 +10,7 @@ const pipeline = promisify(stream.pipeline)
 
 const downloadBatch = (
   tiles: Array<types.Tile>,
-  timeout: number,
+  timeout: types.Timeout,
   outputPath: string,
 ): Promise<void[]> =>
   Promise.all(
@@ -23,6 +23,9 @@ const downloadBatch = (
           got.stream(tile.url, {
             timeout,
             retry: 4,
+            headers: {
+              Connection: 'keep-alive',
+            },
           }),
           stream,
         )

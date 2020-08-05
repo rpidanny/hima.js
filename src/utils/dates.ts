@@ -22,7 +22,7 @@ const getLatestDate = async (imageType: string): Promise<Date> => {
   }
 }
 
-const parseDate = async (options: types.ParsedOptions): Promise<Date> => {
+const parseDate = async (options: types.Options): Promise<Date> => {
   const { date, imageType } = options
   if (typeof date === 'string' || typeof date === 'number') {
     if (date === 'latest' && imageType) {

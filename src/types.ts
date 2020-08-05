@@ -15,7 +15,13 @@ export interface ImageParams {
   parallel?: boolean
   infrared?: boolean
   output?: string
-  timeout?: number
+  timeout?: Timeout
+}
+
+export interface Timeout {
+  connect: number
+  request: number
+  response: number
 }
 
 export interface Options {
@@ -24,7 +30,7 @@ export interface Options {
   parallel?: boolean
   infrared?: boolean
   output?: string
-  timeout?: number
+  timeout?: Timeout
   imageType?: string
   level?: string
   now?: Date
