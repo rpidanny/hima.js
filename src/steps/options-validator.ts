@@ -30,7 +30,7 @@ const imageOptionsValidationSchema = Joi.object()
     zoom: 1,
     parallel: true,
     infrared: false,
-    batchSize: 50,
+    batchSize: 20,
     timeout: {
       connect: 15000,
       response: 15000,
