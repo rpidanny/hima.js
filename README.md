@@ -10,6 +10,7 @@
 ## Install
 
 ```bash
+$ brew install graphicsmagick
 $ npm install --save hima
 ```
 
