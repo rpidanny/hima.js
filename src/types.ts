@@ -1,6 +1,6 @@
 import { DirResult } from 'tmp'
 export interface Context {
-  rawOptions: ImageParams
+  rawOptions: RawOptions
   options?: Options
   output?: Success
 }
@@ -9,13 +9,14 @@ export interface Success {
   output: string
 }
 
-export interface ImageParams {
+export interface RawOptions {
   date?: string | Date
   zoom?: number
   parallel?: boolean
   infrared?: boolean
   output?: string
   timeout?: Timeout
+  batchSize?: number
 }
 
 export interface Timeout {
@@ -36,6 +37,7 @@ export interface Options {
   now?: Date
   tiles?: Array<Tile>
   tempDir?: DirResult
+  batchSize?: number
 }
 
 export interface ZoomMappings {

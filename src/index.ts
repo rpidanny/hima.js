@@ -15,7 +15,7 @@ const executor = buildPipeline(
   stitchTiles,
 )
 
-export const hima = async (options: types.ImageParams): Promise<types.Success> => {
+export const hima = async (options: types.RawOptions): Promise<types.Success> => {
   const ctx: types.Context = { rawOptions: options }
 
   await executor(ctx)

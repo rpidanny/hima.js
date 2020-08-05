@@ -4,23 +4,24 @@ import * as types from '../types'
 
 const timeoutValidationSchema = Joi.object()
   .keys({
-    connect: Joi.number().default(2000),
-    response: Joi.number().default(7000),
-    request: Joi.number().default(9000),
+    connect: Joi.number().default(15000),
+    response: Joi.number().default(15000),
+    request: Joi.number().default(30000),
   })
   .default({
-    connect: 7000,
-    response: 7000,
-    request: 14000,
+    connect: 15000,
+    response: 15000,
+    request: 30000,
   })
 
 const imageOptionsValidationSchema = Joi.object()
   .keys({
-    date: Joi.string().default('latest'),
+    date: Joi.date() || Joi.string().default('latest'),
     zoom: Joi.number().default(1),
     parallel: Joi.boolean().default(true),
     infrared: Joi.boolean().default(false),
     output: Joi.string().optional(),
+    batchSize: Joi.number().default(20),
     timeout: timeoutValidationSchema,
   })
   .default({
@@ -28,10 +29,11 @@ const imageOptionsValidationSchema = Joi.object()
     zoom: 1,
     parallel: true,
     infrared: false,
+    batchSize: 50,
     timeout: {
-      connect: 7000,
-      response: 7000,
-      request: 14000,
+      connect: 15000,
+      response: 15000,
+      request: 30000,
     },
   })
 
