@@ -82,6 +82,10 @@
     "tmp": "^0.2.1"
   },
   "files": [
-    "dist/**/*"
-  ]
+    "dist/**/*",
+    "cli.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
