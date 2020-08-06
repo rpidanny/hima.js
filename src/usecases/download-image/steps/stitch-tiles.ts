@@ -1,5 +1,5 @@
 import config from '../../../config'
-import stitchImage from '../../../utils/stitch-image'
+import stitchTiles from '../../../utils/stitch-tiles'
 
 import { Context } from '../types'
 import { NextFunction } from '../../../types'
@@ -12,7 +12,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
 
     if (tiles && tempDir && zoom && output && log) {
       log('Stitching images together...')
-      await stitchImage(tiles, tempDir, output, tileWidth, zoom)
+      await stitchTiles(tiles, tempDir, output, tileWidth, zoom)
       // Clean
       log('Cleaning temp files...')
       tempDir.removeCallback()
