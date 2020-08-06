@@ -1,6 +1,6 @@
 import color from 'colors'
 
-import * as types from '../types'
+import * as types from '../usecases/download-image/types'
 
 export const getLogger = (debug: boolean): types.LogFunction => {
   const enable = debug

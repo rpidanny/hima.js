@@ -1,6 +1,6 @@
-import { hima } from '../src'
+import { downloadImage } from '../src'
 
-hima({
+downloadImage({
   zoom: 4,
   batchSize: 20,
   debug: true,

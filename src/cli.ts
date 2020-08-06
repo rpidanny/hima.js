@@ -3,8 +3,8 @@ import { Command } from 'commander'
 import cliProgress from 'cli-progress'
 import colors from 'colors' // TODO: replace with chalk
 
-import { hima } from './index'
-import * as types from './types'
+import { downloadImage } from './index'
+import * as types from './usecases/download-image/types'
 
 interface InputOpts {
   out: string
@@ -69,7 +69,7 @@ async function main(): Promise<void> {
 
   const inputOpts = program.opts() as InputOpts
 
-  const { output } = await hima({
+  const { output } = await downloadImage({
     date: inputOpts.date,
     output: path.resolve(inputOpts.out),
     zoom: parseInt(inputOpts.zoom),

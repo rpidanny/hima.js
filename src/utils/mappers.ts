@@ -1,5 +1,5 @@
 import config from '../config'
-import * as types from '../types'
+import * as types from '../usecases/download-image/types'
 
 const infraredZoomMapping: types.ZoomMappings = {
   1: '1d',

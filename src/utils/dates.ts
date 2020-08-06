@@ -1,6 +1,6 @@
 import got, { Response } from 'got'
 
-import * as types from '../types'
+import * as types from '../usecases/download-image/types'
 import config from '../config'
 
 const getLatestDate = async (imageType: string, log: types.LogFunction): Promise<Date> => {

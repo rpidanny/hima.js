@@ -1,4 +1,4 @@
-import * as types from '../types'
+import * as types from '../usecases/download-image/types'
 
 const noop = async (): Promise<void> => {
   // No operations performed
