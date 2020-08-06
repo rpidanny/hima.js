@@ -1,13 +1,8 @@
-import fs from 'fs'
-import stream from 'stream'
 import mktemp, { DirResult } from 'tmp'
-import { promisify } from 'util'
-import got from 'got/dist/source'
 
 import * as types from '../types'
 import chunk from '../../../utils/chunk'
-
-const pipeline = promisify(stream.pipeline)
+import { downloadTile } from '../../../externals/himawari'
 
 const downloadBatch = async (
   tiles: Array<types.Tile>,
@@ -25,26 +20,9 @@ const downloadBatch = async (
   for (let i = 0; i < miniBatches.length; i++) {
     log(`Downloading batch ${i}/${miniBatches.length - 1} of size ${miniBatches[i].length}`)
     const response: Array<void> = await Promise.all(
-      miniBatches[i].map(async (tile: types.Tile) => {
-        const file = `${outputPath}/${tile.name}`
-        const stream = fs.createWriteStream(file)
-
-        try {
-          return await pipeline(
-            got.stream(tile.url, {
-              timeout,
-              retry: 4,
-              headers: {
-                Connection: 'keep-alive',
-              },
-            }),
-            stream,
-          )
-        } catch (err) {
-          console.error(`Failed to download ${tile.url}`)
-          throw err
-        }
-      }),
+      miniBatches[i].map(
+        async (tile: types.Tile): Promise<void> => downloadTile(tile, outputPath, timeout),
+      ),
     )
     finalResponse.concat(response)
     if (progress) {
