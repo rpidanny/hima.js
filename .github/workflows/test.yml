@@ -25,6 +25,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install Dependencies (Linux)
         run: sudo apt update && sudo apt install -y graphicsmagick
         if: matrix.os == 'ubuntu-latest'

@@ -15,6 +15,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - run: sudo apt update && sudo apt install -y graphicsmagick
       - run: npm ci
       - run: npm run lint
