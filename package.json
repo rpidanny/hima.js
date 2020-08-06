@@ -8,7 +8,7 @@
     "hima": "cli.js"
   },
   "scripts": {
-    "build": "./node_modules/typescript/bin/tsc",
+    "build": "./node_modules/typescript/bin/tsc -p ./tsconfig.build.json",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && jest ./test/*",
