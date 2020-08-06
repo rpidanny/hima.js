@@ -3,8 +3,9 @@ import stream from 'stream'
 import got from 'got'
 import { promisify } from 'util'
 
-import { Tile } from '../usecases/download-image/types'
-import { Timeout } from '../types'
+import { zoomLevelMapper, getImageTypeString } from './mappers'
+import { Tile } from '../../usecases/download-image/types'
+import { Timeout } from '../../types'
 
 const pipeline = promisify(stream.pipeline)
 
@@ -32,3 +33,5 @@ export const downloadTile = async (
     throw err
   }
 }
+
+export { zoomLevelMapper, getImageTypeString }

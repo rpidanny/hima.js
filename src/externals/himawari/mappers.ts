@@ -1,5 +1,5 @@
-import config from '../config'
-import { ZoomMappings, ImageTypeToZoomMappings } from '../usecases/download-image/types'
+import config from '../../config'
+import { ZoomMappings, ImageTypeToZoomMappings } from './types'
 
 const infraredZoomMapping: ZoomMappings = {
   1: '1d',

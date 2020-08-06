@@ -1,7 +1,7 @@
 import { parseDate } from '../../../utils/dates'
 import { Context } from '../types'
 import { NextFunction } from '../../../types'
-import { getImageTypeString, zoomLevelMapper } from '../../../utils/mappers'
+import { getImageTypeString, zoomLevelMapper } from '../../../externals/himawari'
 import { getLogger } from '../../../utils/logger'
 
 export default async (ctx: Context, next: NextFunction): Promise<void> => {
