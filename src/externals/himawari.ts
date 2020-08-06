@@ -1,7 +1,7 @@
 import fs from 'fs'
 import stream from 'stream'
-import { promisify } from 'util'
 import got from 'got'
+import { promisify } from 'util'
 
 import * as types from '../usecases/download-image/types'
 
