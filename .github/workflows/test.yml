@@ -45,7 +45,7 @@ jobs:
   auto-merge:
     name: Merge pull request
     runs-on: [ubuntu-18.04]
-    needs: [test]
+    needs: [lint-and-test]
     if: github.base_ref == 'master' && github.actor == 'dependabot[bot]'
     steps:
       - name: Merge
