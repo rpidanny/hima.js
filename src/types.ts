@@ -1,44 +1,56 @@
 import { DirResult } from 'tmp'
 export interface Context {
-  options: ImageParams
-  validatedOptions?: ImageParams
-  parsedOptions?: ParsedOptions
+  rawOptions: RawOptions
+  options?: Options
   output?: Success
 }
 
 export interface Success {
-  status: string
-  data: {
-    output: string
-  }
+  output: string
 }
 
-export interface Failure {
-  message: string
-  code: number
-}
-
-export interface ImageParams {
+export interface RawOptions {
   date?: string | Date
   zoom?: number
   parallel?: boolean
   infrared?: boolean
   output?: string
-  timeout?: number
+  timeout?: Timeout
+  batchSize?: number
+  debug?: boolean
+  progress?: ProgressFunction
 }
 
-export interface ParsedOptions {
+export interface Timeout {
+  connect: number
+  request: number
+  response: number
+}
+
+export interface Options {
   date?: string | Date
   zoom?: number
   parallel?: boolean
   infrared?: boolean
   output?: string
-  timeout?: number
+  timeout?: Timeout
   imageType?: string
   level?: string
   now?: Date
   tiles?: Array<Tile>
   tempDir?: DirResult
+  batchSize?: number
+  debug?: boolean
+  log?: LogFunction
+  progress?: ProgressFunction
+}
+
+export interface LogFunction {
+  (...msgs: Array<string>): void
+}
+
+export interface ProgressFunction {
+  (index: number, total: number): void
 }
 
 export interface ZoomMappings {
@@ -60,7 +72,7 @@ export interface NextFunction {
   (): void
 }
 
-export interface Middleware {
+export interface Step {
   (ctx: Context, next: NextFunction): void
 }
 

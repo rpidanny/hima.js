@@ -1,0 +1,37 @@
+name: Node.js Package Lint And Test
+
+on:
+  push:
+    branches:
+      - "*"
+      - "!master"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  lint-and-test:
+    name: Test on node ${{ matrix.node-version }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [12]
+        os: [ubuntu-latest, macOS-latest]
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install Dependencies (Linux)
+        run: sudo apt update && sudo apt install -y graphicsmagick
+        if: matrix.os == 'ubuntu-latest'
+      - name: Install Dependencies (macOS)
+        run: brew install graphicsmagick
+        if: matrix.os == 'macOS-latest'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build --if-present
+      - run: npm test

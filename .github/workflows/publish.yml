@@ -1,0 +1,45 @@
+name: Node.js Package Lint, Test and Publish
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: sudo apt update && sudo apt install -y graphicsmagick
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+
+  # Publishing to gpr automatically published to npm too
+  build-and-publish-gpr:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm run semantic-release
+        env:
+          GIT_AUTHOR_NAME: ${{secrets.GIT_AUTHOR_NAME}}
+          GIT_AUTHOR_EMAIL: ${{secrets.GIT_AUTHOR_EMAIL}}
+          GIT_COMMITTER_NAME: ${{secrets.GIT_COMMITTER_NAME}}
+          GIT_COMMITTER_EMAIL: ${{secrets.GIT_COMMITTER_EMAIL}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+          GH_TOKEN: ${{secrets.GH_TOKEN}}
+          CI: true

@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
-    /* Basic Options */
     "resolveJsonModule": true,
     "allowJs": false,
     "removeComments": true,
     "isolatedModules": true,
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDirs": ["./", "./src"],
+    "typeRoots": ["./types", "./@types", "node_modules/@types"],
+    "types": ["node", "jest"],
 
-    /* Strict Type-Checking Options */
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -16,22 +20,30 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
 
-    /* Additional Checks */
     "noUnusedLocals": true,
-    // "noUnusedParameters": true,
+    "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
 
-    /* Module Resolution Options */
     "moduleResolution": "node",
     "esModuleInterop": true,
 
-    /* Experimental Options */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
 
-    /* Customized */
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "incremental": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "./node_modules/@types/node/index.d.ts",
+    "coverage"
+  ]
 }

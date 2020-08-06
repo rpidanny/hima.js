@@ -1,29 +1,31 @@
 import { parseDate } from '../utils/dates'
 import * as types from '../types'
 import { getImageTypeString, zoomLevelMapper } from '../utils/mappers'
+import { getLogger } from '../utils/logger'
 
 export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
-  const { validatedOptions } = ctx
+  const { options } = ctx
 
-  if (validatedOptions) {
-    const { date, infrared, zoom } = validatedOptions
+  if (options) {
+    const { date, infrared, zoom, debug } = options
 
-    if (infrared !== undefined && zoom !== undefined && date !== undefined) {
+    if (infrared !== undefined && zoom !== undefined && date !== undefined && debug !== undefined) {
       const imageType: string = getImageTypeString(infrared)
       const level: string = zoomLevelMapper(imageType, zoom)
 
-      ctx.parsedOptions = {
-        ...validatedOptions,
+      ctx.options = {
+        ...options,
         imageType,
         level,
+        log: getLogger(debug),
       }
 
-      const date: Date = await parseDate(ctx.parsedOptions)
-      ctx.parsedOptions.now = date
+      const date: Date = await parseDate(ctx.options)
+      ctx.options.now = date
 
       await next()
     } else {
-      console.log('Invalid Input')
+      throw new Error('Invalid Input')
     }
   }
 }
