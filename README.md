@@ -1,4 +1,4 @@
-![alt text](banner.png "hima.js")
+![alt text](https://github.com/rpidanny/hima.js/raw/master/banner.png "hima.js")
 > Based off of [himawari.js](https://github.com/jakiestfu/himawari.js/)
 
 ## Highlights
@@ -12,7 +12,7 @@
 
 ```bash
 $ brew install graphicsmagick
-$ npm install --save hima
+$ npm install --save @rpidanny/hima
 ```
 
 ## Usage
@@ -57,7 +57,7 @@ hima({
 
 Install package globally using:
 
-`$ npm i -g @rpidanny/hima.js`
+`$ npm i -g @rpidanny/hima`
 
 ```bash
 Usage: hima [options]
