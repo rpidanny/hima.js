@@ -1,6 +1,6 @@
 {
   "name": "@rpidanny/hima",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Download images from Himawari-8 Geo-Stationary Satellite",
   "main": "dist/index.ts",
   "types": "dist/index.d.ts",
@@ -8,13 +8,13 @@
     "hima": "cli.js"
   },
   "scripts": {
-    "build": "./node_modules/typescript/bin/tsc",
+    "build": "./node_modules/typescript/bin/tsc -p ./tsconfig.build.json",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && jest ./test/*",
     "dev": "ts-node examples/download-color.ts",
     "semantic-release": "semantic-release",
-    "hima": "node ./cli.js"
+    "hima": "./cli.js"
   },
   "husky": {
     "hooks": {
@@ -82,6 +82,10 @@
     "tmp": "^0.2.1"
   },
   "files": [
-    "dist/**/*"
-  ]
+    "dist/**/*",
+    "cli.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
