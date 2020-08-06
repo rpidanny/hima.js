@@ -1,8 +1,15 @@
 import { DirResult } from 'tmp'
+
+import { ProgressFunction, LogFunction, Timeout, NextFunction } from '../../types'
+
 export interface Context {
   rawOptions: RawOptions
   options?: Options
   output?: Success
+}
+
+export interface Step {
+  (ctx: Context, next: NextFunction): void
 }
 
 export interface Success {
@@ -19,12 +26,6 @@ export interface RawOptions {
   batchSize?: number
   debug?: boolean
   progress?: ProgressFunction
-}
-
-export interface Timeout {
-  connect: number
-  request: number
-  response: number
 }
 
 export interface Options {
@@ -45,14 +46,6 @@ export interface Options {
   progress?: ProgressFunction
 }
 
-export interface LogFunction {
-  (...msgs: Array<string>): void
-}
-
-export interface ProgressFunction {
-  (index: number, total: number): void
-}
-
 export interface ZoomMappings {
   [name: number]: string
 }
@@ -61,19 +54,6 @@ export interface ImageTypeToZoomMappings {
   INFRARED_FULL: ZoomMappings
   D531106: ZoomMappings
   [name: string]: ZoomMappings
-}
-
-export interface Config {
-  baseUrl: string
-  defaultZoom: string
-}
-
-export interface NextFunction {
-  (): void
-}
-
-export interface Step {
-  (ctx: Context, next: NextFunction): void
 }
 
 export interface Tile {

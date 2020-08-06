@@ -1,9 +1,10 @@
 import config from '../../../config'
 import stitchImage from '../../../utils/stitch-image'
 
-import * as types from '../types'
+import { Context } from '../types'
+import { NextFunction } from '../../../types'
 
-export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
+export default async (ctx: Context, next: NextFunction): Promise<void> => {
   const { options } = ctx
   if (options) {
     const { tiles, tempDir, output, zoom, log } = options

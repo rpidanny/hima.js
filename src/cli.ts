@@ -4,7 +4,7 @@ import cliProgress from 'cli-progress'
 import colors from 'colors' // TODO: replace with chalk
 
 import { downloadImage } from './index'
-import * as types from './usecases/download-image/types'
+import { ProgressFunction } from './types'
 
 interface InputOpts {
   out: string
@@ -16,7 +16,7 @@ interface InputOpts {
   quiet: boolean
 }
 
-const getProgressHandler = (inputOpts: InputOpts): types.ProgressFunction | undefined => {
+const getProgressHandler = (inputOpts: InputOpts): ProgressFunction | undefined => {
   if (inputOpts.quiet) {
     return
   }

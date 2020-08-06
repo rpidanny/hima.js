@@ -5,7 +5,7 @@ import urlGenerator from './steps/url-generator'
 import downloadTiles from './steps/download-tiles'
 import stitchTiles from './steps/stitch-tiles'
 
-import * as types from './types'
+import { Context, RawOptions, Success } from './types'
 
 const executor = buildPipeline(
   optionsValidator,
@@ -15,8 +15,8 @@ const executor = buildPipeline(
   stitchTiles,
 )
 
-export const downloadImage = async (options: types.RawOptions): Promise<types.Success> => {
-  const ctx: types.Context = { rawOptions: options }
+export const downloadImage = async (options: RawOptions): Promise<Success> => {
+  const ctx: Context = { rawOptions: options }
 
   await executor(ctx)
 

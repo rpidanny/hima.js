@@ -3,10 +3,10 @@ import gm from 'gm'
 import { DirResult } from 'tmp'
 import { promisify } from 'util'
 
-import * as types from '../usecases/download-image/types'
+import { Tile } from '../usecases/download-image/types'
 
 export default async (
-  tiles: Array<types.Tile>,
+  tiles: Array<Tile>,
   tilesDir: DirResult,
   output: string,
   width: number,
@@ -15,7 +15,7 @@ export default async (
   const magick = gm(zoom * width, zoom * width)
   // Define pages and their respective files
   for (let i = 0; i < tiles.length; i++) {
-    const page: types.Tile = tiles[i]
+    const page: Tile = tiles[i]
     const coords = '+' + page.x * width + '+' + page.y * width
     magick.in('-page', coords).in(path.join(tilesDir.name, page.name))
   }

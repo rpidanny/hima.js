@@ -1,9 +1,10 @@
 import got, { Response } from 'got'
 
-import * as types from '../usecases/download-image/types'
+import { LogFunction } from '../types'
+import { Options } from '../usecases/download-image/types'
 import config from '../config'
 
-const getLatestDate = async (imageType: string, log: types.LogFunction): Promise<Date> => {
+const getLatestDate = async (imageType: string, log: LogFunction): Promise<Date> => {
   const url = `${config.baseUrl}/${imageType}/latest.json`
   try {
     const response: Response<string> = await got(url, {
@@ -21,7 +22,7 @@ const getLatestDate = async (imageType: string, log: types.LogFunction): Promise
   }
 }
 
-const parseDate = async (options: types.Options): Promise<Date> => {
+const parseDate = async (options: Options): Promise<Date> => {
   const { date, imageType, log } = options
   if (date !== undefined && imageType && log) {
     if (typeof date === 'string' || typeof date === 'number') {

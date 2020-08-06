@@ -1,6 +1,7 @@
 import Joi from '@hapi/joi'
 
-import * as types from '../types'
+import { Context } from '../types'
+import { NextFunction } from '../../../types'
 
 const timeoutValidationSchema = Joi.object()
   .keys({
@@ -40,7 +41,7 @@ const imageOptionsValidationSchema = Joi.object()
     debug: false,
   })
 
-export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
+export default async (ctx: Context, next: NextFunction): Promise<void> => {
   const { rawOptions } = ctx
   const { error, value } = await imageOptionsValidationSchema.validate(rawOptions, {
     allowUnknown: false,

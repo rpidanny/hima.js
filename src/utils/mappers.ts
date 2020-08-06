@@ -1,13 +1,13 @@
 import config from '../config'
-import * as types from '../usecases/download-image/types'
+import { ZoomMappings, ImageTypeToZoomMappings } from '../usecases/download-image/types'
 
-const infraredZoomMapping: types.ZoomMappings = {
+const infraredZoomMapping: ZoomMappings = {
   1: '1d',
   2: '4d',
   3: '8d',
 }
 
-const colorZoomMapping: types.ZoomMappings = {
+const colorZoomMapping: ZoomMappings = {
   1: '1d',
   2: '4d',
   3: '8d',
@@ -15,7 +15,7 @@ const colorZoomMapping: types.ZoomMappings = {
   5: '20d',
 }
 
-const imageTypeToZoomMapping: types.ImageTypeToZoomMappings = {
+const imageTypeToZoomMapping: ImageTypeToZoomMappings = {
   INFRARED_FULL: infraredZoomMapping,
   D531106: colorZoomMapping,
 }
@@ -23,7 +23,7 @@ const imageTypeToZoomMapping: types.ImageTypeToZoomMappings = {
 const getImageTypeString = (infrared: boolean): string => (infrared ? 'INFRARED_FULL' : 'D531106')
 
 const zoomLevelMapper = (imageType: string, zoom: number): string => {
-  const zoomMapping: types.ZoomMappings = imageTypeToZoomMapping[imageType]
+  const zoomMapping: ZoomMappings = imageTypeToZoomMapping[imageType]
   return zoomMapping[zoom] || config.defaultZoom
 }
 

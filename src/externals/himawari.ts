@@ -3,14 +3,15 @@ import stream from 'stream'
 import got from 'got'
 import { promisify } from 'util'
 
-import * as types from '../usecases/download-image/types'
+import { Tile } from '../usecases/download-image/types'
+import { Timeout } from '../types'
 
 const pipeline = promisify(stream.pipeline)
 
 export const downloadTile = async (
-  tile: types.Tile,
+  tile: Tile,
   outputPath: string,
-  timeout: types.Timeout,
+  timeout: Timeout,
 ): Promise<void> => {
   const file = `${outputPath}/${tile.name}`
   const stream = fs.createWriteStream(file)
