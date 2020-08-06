@@ -1,17 +1,7 @@
 import { parseDate } from '../utils/dates'
 import * as types from '../types'
 import { getImageTypeString, zoomLevelMapper } from '../utils/mappers'
-
-const getLogger = (debug: boolean): types.LogFunction => {
-  const enable = debug
-  return (...msgs: Array<string>) => {
-    if (enable) {
-      const messages = msgs
-      messages.unshift('[hima]')
-      console.log(...messages)
-    }
-  }
-}
+import { getLogger } from '../utils/logger'
 
 export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
   const { options } = ctx
