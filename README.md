@@ -4,6 +4,7 @@
 ## Highlights
 
 - Promise API
+- CLI
 - TypeScript Support
 - Actively Maintained
 
