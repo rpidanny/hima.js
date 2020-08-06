@@ -27,7 +27,7 @@ Type: `object`
 
 | key          | default        | type              | description       |
 | ------------ | -------------- | ----------------- | ----------------- |
-| `date`       | `latest`       | `string` / `date` | Which date?       |
+| `date`       | `latest`       | `string` / `date` | String in `yyyy/mm/dd hh:mm:ss` or a JS `Date` object.       |
 | `zoom`       | `1`            | `number`          | zoom level. 1-3 for IR and 1-5 for color |
 | `infrared`   | `false`        | `boolean`         | color image or IR image? |
 | `output`     | `./`           | `string`          | Output directory to save image in. |
@@ -79,7 +79,7 @@ Checkout the repository locally, then:
 
 ```bash
 $ npm i
-$ npm run dev
+$ npm run hima
 ```
 
 ## Contribute
