@@ -33,7 +33,11 @@
     "url": "git+https://github.com/rpidanny/hima.js.git"
   },
   "keywords": [
-    "himawari"
+    "himawari",
+    "typescript",
+    "javascript",
+    "cli",
+    "satellite"
   ],
   "author": "Abhishek <abhishek.rpidanny@gmail.com>",
   "license": "MIT",
