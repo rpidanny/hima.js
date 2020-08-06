@@ -6,7 +6,8 @@ on:
       - "master"
 
 jobs:
-  lint-and-test:
+  lint-test-build-and-publish:
+    needs: lint-and-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -21,22 +22,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: sudo apt update && sudo apt install -y graphicsmagick
       - run: npm ci
       - run: npm run lint
-      - run: npm test
-
-  build-and-publish:
-    needs: lint-and-test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: npm ci
+      - run: npm run test
       - run: npm run build --if-present
       - run: npm run semantic-release
         env:
