@@ -14,7 +14,7 @@
     "test": "npm run lint && jest ./test/*",
     "dev": "ts-node examples/download-color.ts",
     "semantic-release": "semantic-release",
-    "hima": "node ./cli.js"
+    "hima": "./cli.js"
   },
   "husky": {
     "hooks": {
