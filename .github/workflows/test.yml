@@ -35,3 +35,22 @@ jobs:
       - run: npm run lint
       - run: npm run build --if-present
       - run: npm test
+
+  auto-merge:
+    name: Merge pull request
+    runs-on: [ubuntu-18.04]
+    needs: [test]
+    if: github.base_ref == 'master' && github.actor == 'dependabot[bot]'
+    steps:
+      - name: Merge
+        uses: actions/github-script@0.2.0
+        with:
+          script: |
+            github.pullRequests.merge({
+              owner: context.payload.repository.owner.login,
+              # owner: context.repo.owner,
+              repo: context.payload.repository.name,
+              pull_number: context.payload.pull_request.number,
+              merge_method: 'squash'
+            })
+          github-token: ${{github.token}}
