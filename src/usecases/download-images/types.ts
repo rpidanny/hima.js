@@ -1,6 +1,5 @@
-import { DirResult } from 'tmp'
-
 import { ProgressFunction, LogFunction, Timeout, NextFunction } from '../../types'
+import * as imageTypes from '../download-image/types'
 
 export interface Context {
   rawOptions: RawOptions
@@ -13,11 +12,13 @@ export interface Step {
 }
 
 export interface Success {
-  output: string
+  images: Array<imageTypes.Success>
 }
 
 export interface RawOptions {
-  date?: string | Date
+  startDate: string | Date
+  endDate: string | Date
+  interval: number
   zoom?: number
   infrared?: boolean
   output?: string
@@ -28,25 +29,16 @@ export interface RawOptions {
 }
 
 export interface Options {
-  date?: string | Date
+  startDate: string | Date
+  endDate: string | Date
+  interval: number
   zoom?: number
   infrared?: boolean
   output?: string
   timeout?: Timeout
-  imageType?: string
-  level?: string
-  now?: Date
-  tiles?: Array<Tile>
-  tempDir?: DirResult
   batchSize?: number
   debug?: boolean
   log?: LogFunction
   progress?: ProgressFunction
-}
-
-export interface Tile {
-  name: string
-  url: string
-  x: number
-  y: number
+  dates?: Array<Date>
 }
