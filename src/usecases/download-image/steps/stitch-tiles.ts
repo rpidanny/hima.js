@@ -11,7 +11,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
     const { tileWidth } = config
 
     if (tiles && tempDir && zoom && output && log) {
-      log('Stitching images together...')
+      log('Stitching tiles into a single image...')
       await stitchTiles(tiles, tempDir, output, tileWidth, zoom)
       // Clean
       log('Cleaning temp files...')
