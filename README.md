@@ -79,7 +79,7 @@ Checkout the repository locally, then:
 
 ```bash
 $ npm i
-$ npm run dev
+$ npm run hima
 ```
 
 ## Contribute
