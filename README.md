@@ -32,7 +32,7 @@ Download single image
 
 Options:
   --out <path>    Output file (default: "./<currentdate>.jpg")
-  --date <date>   Date in yyyy/mm/dd hh:mm:ss (default: "latest")
+  --date <date>   Date in yyyy/mm/dd hh:mm:ssZ (default: "latest")
   --zoom <level>  Zoom level. 1-3 for IR. 1-5 for color (default: "1")
   --ir            Download Infrared Image (default: false)
   --batch-size    How many tiles to download in parallel?
@@ -48,8 +48,8 @@ Download multiple images
 
 Options:
   --out <path>          Output directory (default: "./")
-  --start-date <date>   Date in yyyy/mm/dd hh:mm:ss
-  --end-date <date>     Date in yyyy/mm/dd hh:mm:ss
+  --start-date <date>   Date in yyyy/mm/dd hh:mm:ssZ
+  --end-date <date>     Date in yyyy/mm/dd hh:mm:ssZ
   --interval <minutes>  Interval between two images (default: "10")
   --zoom <level>        Zoom level. 1-3 for IR. 1-5 for color (default: "1")
   --ir                  Download Infrared Image (default: false)
@@ -69,7 +69,7 @@ Type: `object`
 
 | key          | default        | type              | description       |
 | ------------ | -------------- | ----------------- | ----------------- |
-| `date`       | `latest`       | `string` / `date` | String in `yyyy/mm/dd hh:mm:ss` or a JS `Date` object.       |
+| `date`       | `latest`       | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
 | `zoom`       | `1`            | `number`          | zoom level. 1-3 for IR and 1-5 for color |
 | `infrared`   | `false`        | `boolean`         | color image or IR image? |
 | `output`     | `./`           | `string`          | Output file.      |
@@ -86,7 +86,7 @@ import { downloadImage } from 'hima'
 downloadImage({
   zoom: 1,
   batchSize: 20,
-  date: '2019/10/21 18:30:20', // 2020/02/14
+  date: '2019/10/21 18:30:20Z', // 2020/02/14
   debug: true,
   progress: (completed, total) => console.log(`Completed ${completed}/${total}`)
 })
@@ -103,8 +103,8 @@ Type: `object`
 
 | key          | default        | type              | description       |
 | ------------ | -------------- | ----------------- | ----------------- |
-| `startDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ss` or a JS `Date` object.       |
-| `endDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ss` or a JS `Date` object.       |
+| `startDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
+| `endDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
 | `interval`       | `10`            | `number`          | Interval between two images in minutes. (min: 10) |
 | `zoom`       | `1`            | `number`          | zoom level. 1-3 for IR and 1-5 for color |
 | `infrared`   | `false`        | `boolean`         | color image or IR image? |
@@ -122,8 +122,8 @@ import { downloadImages } from 'hima'
 downloadImages({
   zoom: 1,
   batchSize: 20,
-  startDate: '2019/10/21 18:30:20',
-  endDate: '2019/10/21 20:30:20',
+  startDate: '2019/10/21 18:30:20Z',
+  endDate: '2019/10/21 20:30:20Z',
   interval: 30,
   debug: true,
   progress: (completed, total) => console.log(`Completed ${completed}/${total}`)
