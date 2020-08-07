@@ -28,7 +28,6 @@ describe('Utils: Check Date Helpers', () => {
     const endDate = '2019/10/21 20:30:21Z'
     const interval = 30 // minutes
     const dates: Array<Date> = getDates(startDate, endDate, interval)
-    console.log(dates)
 
     expect(dates.length).toBe(4)
     expect(dates[0].toISOString()).toBe('2019-10-21T20:00:21.000Z')
