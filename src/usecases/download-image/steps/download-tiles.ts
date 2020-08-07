@@ -1,21 +1,17 @@
-import fs from 'fs'
-import stream from 'stream'
 import mktemp, { DirResult } from 'tmp'
-import { promisify } from 'util'
-import got from 'got/dist/source'
 
-import * as types from '../types'
-import chunk from '../utils/chunk'
-
-const pipeline = promisify(stream.pipeline)
+import { Tile, Context } from '../types'
+import { Timeout, LogFunction, ProgressFunction, NextFunction } from '../../../types'
+import chunk from '../../../utils/chunk'
+import { downloadTile } from '../../../externals/himawari'
 
 const downloadBatch = async (
-  tiles: Array<types.Tile>,
-  timeout: types.Timeout,
+  tiles: Array<Tile>,
+  timeout: Timeout,
   batchSize: number,
   outputPath: string,
-  log: types.LogFunction,
-  progress: types.ProgressFunction | undefined,
+  log: LogFunction,
+  progress: ProgressFunction | undefined,
 ): Promise<void[]> => {
   const miniBatches = chunk(tiles, batchSize)
   const finalResponse: Array<void> = []
@@ -25,26 +21,9 @@ const downloadBatch = async (
   for (let i = 0; i < miniBatches.length; i++) {
     log(`Downloading batch ${i}/${miniBatches.length - 1} of size ${miniBatches[i].length}`)
     const response: Array<void> = await Promise.all(
-      miniBatches[i].map(async (tile: types.Tile) => {
-        const file = `${outputPath}/${tile.name}`
-        const stream = fs.createWriteStream(file)
-
-        try {
-          return await pipeline(
-            got.stream(tile.url, {
-              timeout,
-              retry: 4,
-              headers: {
-                Connection: 'keep-alive',
-              },
-            }),
-            stream,
-          )
-        } catch (err) {
-          console.error(`Failed to download ${tile.url}`)
-          throw err
-        }
-      }),
+      miniBatches[i].map(
+        async (tile: Tile): Promise<void> => downloadTile(tile, outputPath, timeout),
+      ),
     )
     finalResponse.concat(response)
     if (progress) {
@@ -55,7 +34,7 @@ const downloadBatch = async (
   return finalResponse
 }
 
-export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
+export default async (ctx: Context, next: NextFunction): Promise<void> => {
   const { options } = ctx
 
   if (options) {

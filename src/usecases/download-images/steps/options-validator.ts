@@ -1,6 +1,7 @@
 import Joi from '@hapi/joi'
 
-import * as types from '../types'
+import { Context } from '../types'
+import { NextFunction } from '../../../types'
 
 const timeoutValidationSchema = Joi.object()
   .keys({
@@ -14,24 +15,25 @@ const timeoutValidationSchema = Joi.object()
     request: 30000,
   })
 
-const imageOptionsValidationSchema = Joi.object()
+const optionsValidationSchema = Joi.object()
   .keys({
-    date: Joi.alternatives().try(Joi.date(), Joi.string()).default('latest'),
+    startDate: Joi.alternatives().try(Joi.date(), Joi.string()).required(),
+    endDate: Joi.alternatives().try(Joi.date(), Joi.string()).required(),
+    interval: Joi.number().default(10),
     zoom: Joi.number().default(1),
-    parallel: Joi.boolean().default(true),
     infrared: Joi.boolean().default(false),
-    output: Joi.string().optional(),
+    output: Joi.string().default('./images'),
     batchSize: Joi.number().default(20),
     timeout: timeoutValidationSchema,
     debug: Joi.boolean().default(false),
     progress: Joi.function().optional(),
   })
   .default({
-    date: 'latest',
     zoom: 1,
-    parallel: true,
+    interval: 10,
     infrared: false,
     batchSize: 20,
+    output: './',
     timeout: {
       connect: 15000,
       response: 15000,
@@ -40,9 +42,9 @@ const imageOptionsValidationSchema = Joi.object()
     debug: false,
   })
 
-export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
+export default async (ctx: Context, next: NextFunction): Promise<void> => {
   const { rawOptions } = ctx
-  const { error, value } = await imageOptionsValidationSchema.validate(rawOptions, {
+  const { error, value } = await optionsValidationSchema.validate(rawOptions, {
     allowUnknown: false,
   })
 

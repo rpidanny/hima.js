@@ -1,9 +1,10 @@
 import moment from 'moment'
 
-import config from '../config'
-import * as types from '../types'
+import config from '../../../config'
+import { Context, Tile } from '../types'
+import { NextFunction } from '../../../types'
 
-export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
+export default async (ctx: Context, next: NextFunction): Promise<void> => {
   const { options } = ctx
   const width = 550
 
@@ -27,7 +28,7 @@ export default async (ctx: types.Context, next: types.NextFunction): Promise<voi
       const outfile = output || './' + [year, month, day, '_', time, '.jpg'].join('')
 
       // Compose our requests
-      const tiles: Array<types.Tile> = []
+      const tiles: Array<Tile> = []
       for (let x = 0; x < blocks; x++) {
         for (let y = 0; y < blocks; y++) {
           tiles.push({

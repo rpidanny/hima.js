@@ -1,9 +1,10 @@
-import { parseDate } from '../utils/dates'
-import * as types from '../types'
-import { getImageTypeString, zoomLevelMapper } from '../utils/mappers'
-import { getLogger } from '../utils/logger'
+import { parseDate } from '../../../utils/dates'
+import { Context } from '../types'
+import { NextFunction } from '../../../types'
+import { getImageTypeString, zoomLevelMapper } from '../../../externals/himawari'
+import { getLogger } from '../../../utils/logger'
 
-export default async (ctx: types.Context, next: types.NextFunction): Promise<void> => {
+export default async (ctx: Context, next: NextFunction): Promise<void> => {
   const { options } = ctx
 
   if (options) {
