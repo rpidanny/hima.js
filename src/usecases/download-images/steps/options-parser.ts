@@ -21,7 +21,6 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
         dates,
         log: getLogger(debug),
       }
-      console.log(ctx.options)
       await next()
     } else {
       throw new Error('Invalid Input')

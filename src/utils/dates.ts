@@ -50,7 +50,6 @@ const getDates = (
   const diffMinutes = Math.abs(end.getTime() - start.getTime()) / 60000
   const intervals = diffMinutes / interval
 
-  console.log('Interval', intervals)
   // Counts and a list
   let minutes = 0
   const dates = []

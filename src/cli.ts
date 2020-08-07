@@ -30,7 +30,7 @@ interface ImagesInputOpts {
   quiet: boolean
 }
 
-const getProgressHandler = (quiet: boolean): ProgressFunction | undefined => {
+const getProgressHandler = (title: string, quiet: boolean): ProgressFunction | undefined => {
   if (quiet) {
     return
   }
@@ -45,7 +45,7 @@ const getProgressHandler = (quiet: boolean): ProgressFunction | undefined => {
   )
   progressBar.start(100, 0, {
     percentage: 0,
-    status: colors.inverse('Downloading Image'),
+    status: colors.inverse(title),
     completed: 0,
     totalTiles: 0,
   })
@@ -74,7 +74,7 @@ const handleImageCommand = async (inputOpts: ImageInputOpts): Promise<void> => {
     batchSize: (inputOpts.batchSize && parseInt(inputOpts.batchSize)) || 20,
     infrared: inputOpts.ir,
     debug: inputOpts.quiet || inputOpts.debug,
-    progress: getProgressHandler(inputOpts.quiet),
+    progress: getProgressHandler('Downloading Image', inputOpts.quiet),
   })
 
   if (!inputOpts.quiet && output) {
@@ -92,7 +92,7 @@ const handleImagesCommand = async (inputOpts: ImagesInputOpts): Promise<void> =>
     batchSize: (inputOpts.batchSize && parseInt(inputOpts.batchSize)) || 20,
     infrared: inputOpts.ir,
     debug: inputOpts.quiet || inputOpts.debug,
-    progress: getProgressHandler(inputOpts.quiet),
+    progress: getProgressHandler('Downloading Images', inputOpts.quiet),
   })
   if (!inputOpts.quiet && images) {
     console.log(colors.green.inverse(`${images.length} Images saved to ${inputOpts.out}`))
