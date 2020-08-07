@@ -1,6 +1,6 @@
 {
   "name": "@rpidanny/hima",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Download images from Himawari-8 Geo-Stationary Satellite",
   "main": "dist/src/index.ts",
   "types": "dist/src/index.d.ts",
