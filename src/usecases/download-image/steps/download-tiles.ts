@@ -22,7 +22,7 @@ const downloadBatch = async (
     log(`Downloading batch ${i}/${miniBatches.length - 1} of size ${miniBatches[i].length}`)
     const response: Array<void> = await Promise.all(
       miniBatches[i].map(
-        async (tile: Tile): Promise<void> => downloadTile(tile, outputPath, timeout),
+        async (tile: Tile): Promise<void> => await downloadTile(tile, outputPath, timeout, log),
       ),
     )
     finalResponse.concat(response)

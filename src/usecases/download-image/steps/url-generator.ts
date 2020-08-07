@@ -46,7 +46,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
         output: outfile,
       }
       const startTime = new Date().getMilliseconds()
-      log(`Downloading ${tiles.length} tiles:`)
+      log(`Downloading ${tiles.length} tile(s)`)
       await next()
       const elapsedTime = new Date().getMilliseconds() - startTime
       log(`Downloaded ${tiles.length} tiles in ${elapsedTime / 1000}s`)

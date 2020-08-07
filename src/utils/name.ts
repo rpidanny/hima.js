@@ -1,9 +1,9 @@
-const capFirst = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1)
+export const capFirst = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1)
 
-const getRandomInt = (min: number, max: number): number =>
+export const getRandomInt = (min: number, max: number): number =>
   Math.floor(Math.random() * (max - min)) + min
 
-const generateName = (): string => {
+export const generateName = (): string => {
   const name1 = [
     'abandoned',
     'able',
@@ -2858,9 +2858,4 @@ const generateName = (): string => {
     'Lieuwe',
   ]
   return `${name1[getRandomInt(0, name1.length + 1)]}_${name2[getRandomInt(0, name2.length + 1)]}`
-}
-
-exports = {
-  generateName,
-  capFirst,
 }
