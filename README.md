@@ -7,6 +7,8 @@
 - CLI
 - TypeScript Support
 - Actively Maintained
+- Download Single Image
+- Download Multiple Images between two dates
 
 ## Install
 
@@ -17,9 +19,49 @@ $ npm install --save @rpidanny/hima
 
 ## Usage
 
+### CLI
+
+Install package globally using:
+
+`$ npm i -g @rpidanny/hima`
+
+```bash
+Usage: hima image [options]
+
+Download single image
+
+Options:
+  --out <path>    Output file (default: "./<currentdate>.jpg")
+  --date <date>   Date in yyyy/mm/dd hh:mm:ss (default: "latest")
+  --zoom <level>  Zoom level. 1-3 for IR. 1-5 for color (default: "1")
+  --ir            Download Infrared Image (default: false)
+  --batch-size    How many tiles to download in parallel?
+  --debug         Enable debug logs? (default: false)
+  --quiet         Disable all logs? (default: false)
+  -h, --help      display help for command
+```
+
+```bash
+Usage: hima images [options]
+
+Download multiple images
+
+Options:
+  --out <path>          Output directory (default: "./")
+  --start-date <date>   Date in yyyy/mm/dd hh:mm:ss
+  --end-date <date>     Date in yyyy/mm/dd hh:mm:ss
+  --interval <minutes>  Interval between two images (default: "10")
+  --zoom <level>        Zoom level. 1-3 for IR. 1-5 for color (default: "1")
+  --ir                  Download Infrared Image (default: false)
+  --batch-size          How many tiles to download in parallel?
+  --debug               Enable debug logs? (default: false)
+  --quiet               Disable all logs? (default: false)
+  -h, --help            display help for command
+```
+
 ### API
 
-#### hima(options?)
+#### downloadImage(options?)
 
 ##### options
 
@@ -39,12 +81,12 @@ Type: `object`
 #### Example
 
 ```js
-import { hima } from 'hima'
+import { downloadImage } from 'hima'
 
-hima({
+downloadImage({
   zoom: 1,
   batchSize: 20,
-  date: new Date(1581638400000), // 2020/02/14
+  date: '2019/10/21 18:30:20', // 2020/02/14
   debug: true,
   progress: (completed, total) => console.log(`Completed ${completed}/${total}`)
 })
@@ -53,24 +95,42 @@ hima({
 
 ```
 
-### CLI
+#### downloadImages(options?)
 
-Install package globally using:
+##### options
 
-`$ npm i -g @rpidanny/hima`
+Type: `object`
 
-```bash
-Usage: hima [options]
+| key          | default        | type              | description       |
+| ------------ | -------------- | ----------------- | ----------------- |
+| `startDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ss` or a JS `Date` object.       |
+| `endDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ss` or a JS `Date` object.       |
+| `interval`       | `10`            | `number`          | Interval between two images in minutes. (min: 10) |
+| `zoom`       | `1`            | `number`          | zoom level. 1-3 for IR and 1-5 for color |
+| `infrared`   | `false`        | `boolean`         | color image or IR image? |
+| `output`     | `./`           | `string`          | Output file.      |
+| `batchSize`  | `20`           | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. |
+| `debug`      | `false`        | `boolean`         | enable logs?      |
+| `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   |
+| `progress`   | `None`         | `function`        | A callback function that is called on progress update. Receives two parameters: (`completed`, `total`) |
 
-Options:
-  --out <path>    output directory (default: "./")
-  --date <date>   Date in yyyy/mm/dd hh:mm:ss (default: "latest")
-  --zoom <level>  Zoom level. 1-3 for IR. 1-5 for color (default: "1")
-  --ir            Download Infrared Image (default: false)
-  --batch-size    How many tiles to download in parallel?
-  --debug         Enable debug logs? (default: false)
-  --quiet         Disable all logs? (default: false)
-  -h, --help      display help for command
+#### Example
+
+```js
+import { downloadImages } from 'hima'
+
+downloadImages({
+  zoom: 1,
+  batchSize: 20,
+  startDate: '2019/10/21 18:30:20',
+  endDate: '2019/10/21 20:30:20',
+  interval: 30,
+  debug: true,
+  progress: (completed, total) => console.log(`Completed ${completed}/${total}`)
+})
+  .then(console.log)
+  .catch(console.error)
+
 ```
 
 ## Development

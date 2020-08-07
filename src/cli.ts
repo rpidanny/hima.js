@@ -124,7 +124,7 @@ async function main(): Promise<void> {
     .option('--out <path>', 'Output directory', rootPath)
     .option('--start-date <date>', 'Date in yyyy/mm/dd hh:mm:ss')
     .option('--end-date <date>', 'Date in yyyy/mm/dd hh:mm:ss')
-    .option('--interval <minutes>', 'Date in yyyy/mm/dd hh:mm:ss', '10')
+    .option('--interval <minutes>', 'Interval between two images', '10')
     .option('--zoom <level>', 'Zoom level. 1-3 for IR. 1-5 for color', '1')
     .option('--ir', 'Download Infrared Image', false)
     .option('--batch-size', 'How many tiles to download in parallel?', '20')

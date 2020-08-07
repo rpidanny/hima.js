@@ -18,7 +18,7 @@ export interface Success {
 export interface RawOptions {
   startDate: string | Date
   endDate: string | Date
-  interval: number
+  interval?: number
   zoom?: number
   infrared?: boolean
   output?: string
@@ -31,7 +31,7 @@ export interface RawOptions {
 export interface Options {
   startDate: string | Date
   endDate: string | Date
-  interval: number
+  interval?: number
   zoom?: number
   infrared?: boolean
   output?: string

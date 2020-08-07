@@ -19,7 +19,7 @@ const optionsValidationSchema = Joi.object()
   .keys({
     startDate: Joi.alternatives().try(Joi.date(), Joi.string()).required(),
     endDate: Joi.alternatives().try(Joi.date(), Joi.string()).required(),
-    interval: Joi.number().required(),
+    interval: Joi.number().default(10),
     zoom: Joi.number().default(1),
     infrared: Joi.boolean().default(false),
     output: Joi.string().default('./images'),
@@ -30,6 +30,7 @@ const optionsValidationSchema = Joi.object()
   })
   .default({
     zoom: 1,
+    interval: 10,
     infrared: false,
     batchSize: 20,
     output: './',
