@@ -1,21 +1,20 @@
 import config from '../../config'
-import { ZoomMappings, ImageTypeToZoomMappings } from './types'
 
-const infraredZoomMapping: ZoomMappings = {
-  1: '1d',
-  2: '4d',
-  3: '8d',
+export enum infraredZoomMapping {
+  '1d' = 1,
+  '4d',
+  '8d',
 }
 
-const colorZoomMapping: ZoomMappings = {
-  1: '1d',
-  2: '4d',
-  3: '8d',
-  4: '16d',
-  5: '20d',
+export enum colorZoomMapping {
+  '1d' = 1,
+  '4d',
+  '8d',
+  '16d',
+  '20d',
 }
 
-const imageTypeToZoomMapping: ImageTypeToZoomMappings = {
+const imageTypeToZoomMapping = {
   INFRARED_FULL: infraredZoomMapping,
   D531106: colorZoomMapping,
 }
@@ -23,8 +22,7 @@ const imageTypeToZoomMapping: ImageTypeToZoomMappings = {
 const getImageTypeString = (infrared: boolean): string => (infrared ? 'INFRARED_FULL' : 'D531106')
 
 const zoomLevelMapper = (imageType: string, zoom: number): string => {
-  const zoomMapping: ZoomMappings = imageTypeToZoomMapping[imageType]
-  return zoomMapping[zoom] || config.defaultZoom
+  return imageTypeToZoomMapping[imageType][zoom] || config.defaultZoom
 }
 
 export { zoomLevelMapper, getImageTypeString }
