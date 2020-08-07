@@ -34,11 +34,11 @@ export const downloadTile = async (
         )
       },
       {
-        onRetry: (_err, attempt: number) => {
+        onRetry: (err, attempt: number) => {
           if (!log) {
             return
           }
-          log(`#${attempt} Retrying to download ${tile.url} ...`)
+          log(`#${attempt} Retrying to download ${tile.url} -- ${err.message}`)
         },
         retries: 5,
         minTimeout: 1000,
