@@ -20,7 +20,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
           batchSize,
           debug,
           zoom,
-          output: path.resolve(output, `${dates[i].toUTCString()}.jpg`),
+          output: path.resolve(output, `${dates[i].toISOString()}.jpg`),
           progress: (c, t) => {
             if (progress) {
               const percentComplete = (c / t) * 100
