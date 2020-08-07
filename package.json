@@ -2,8 +2,8 @@
   "name": "@rpidanny/hima",
   "version": "1.0.0",
   "description": "Download images from Himawari-8 Geo-Stationary Satellite",
-  "main": "dist/index.ts",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.ts",
+  "types": "dist/src/index.d.ts",
   "bin": {
     "hima": "cli.js"
   },
@@ -14,7 +14,7 @@
     "test": "npm run lint && jest ./test/*",
     "dev": "ts-node examples/download-images.ts",
     "semantic-release": "semantic-release",
-    "hima": "./cli.js"
+    "hima": "npm run build && ./cli.js"
   },
   "husky": {
     "hooks": {
