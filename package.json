@@ -16,7 +16,8 @@
     "test:unit": "npm run lint && jest ./test/unit/*",
     "dev": "ts-node examples/download-images.ts",
     "semantic-release": "semantic-release",
-    "hima": "npm run build && ./cli.js"
+    "hima": "npm run build && ./cli.js",
+    "test:test": "npm run lint && jest ./test/unit/chunk.spec.ts"
   },
   "husky": {
     "hooks": {
