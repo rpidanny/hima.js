@@ -1,6 +1,7 @@
 import { NextFunction } from '../types'
 import * as imageTypes from '../usecases/download-image/types'
 import * as imagesTypes from '../usecases/download-images/types'
+import * as timelapseTypes from '../usecases/create-timelapse/types'
 
 const noop = async (): Promise<void> => {
   // No operations performed
@@ -18,4 +19,11 @@ const buildImagesPipeline = (...steps: Array<imagesTypes.Step>) => (
     return () => step(ctx, next)
   }, noop)()
 
-export { buildImagePipeline, buildImagesPipeline }
+const buildTimelapsePipeline = (...steps: Array<timelapseTypes.Step>) => (
+  ctx: timelapseTypes.Context,
+): void =>
+  steps.reduceRight((next: NextFunction, step: timelapseTypes.Step): NextFunction => {
+    return () => step(ctx, next)
+  }, noop)()
+
+export { buildImagePipeline, buildImagesPipeline, buildTimelapsePipeline }

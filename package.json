@@ -14,7 +14,7 @@
     "test": "npm run lint && jest ./test/*",
     "test:integration": "npm run lint && jest ./test/integration/*",
     "test:unit": "npm run lint && jest ./test/unit/*",
-    "dev": "ts-node examples/download-images.ts",
+    "dev": "ts-node examples/create-timelapse.ts",
     "semantic-release": "semantic-release",
     "hima": "npm run build && ./cli.js",
     "test:test": "npm run lint && jest ./test/unit/chunk.spec.ts"

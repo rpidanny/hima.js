@@ -37,6 +37,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
       }
 
       ctx.output = {
+        rootDir: output,
         images: responses,
       }
 

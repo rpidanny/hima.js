@@ -14,8 +14,11 @@
 
 ```bash
 $ brew install graphicsmagick
+$ brew install ffmpeg
 $ npm install --save @rpidanny/hima
 ```
+
+`ffmpeg` is required to create the timelapse video. Feel free to skip this if you don't want to create timelapse videos.
 
 ## Usage
 

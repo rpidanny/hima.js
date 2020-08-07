@@ -1,5 +1,5 @@
 import { ProgressFunction, LogFunction, Timeout, NextFunction } from '../../types'
-import * as imageTypes from '../download-image/types'
+import * as imagesTypes from '../download-images/types'
 
 export interface Context {
   rawOptions: RawOptions
@@ -12,15 +12,14 @@ export interface Step {
 }
 
 export interface Success {
-  rootDir: string
-  images: Array<imageTypes.Success>
+  output: string
 }
 
 export interface RawOptions {
   startDate: string | Date
   endDate: string | Date
   interval?: number
-  zoom?: number
+  quality?: string
   infrared?: boolean
   output?: string
   timeout?: Timeout
@@ -33,7 +32,7 @@ export interface Options {
   startDate: string | Date
   endDate: string | Date
   interval?: number
-  zoom?: number
+  quality?: string
   infrared?: boolean
   output?: string
   timeout?: Timeout
@@ -41,5 +40,5 @@ export interface Options {
   debug?: boolean
   log?: LogFunction
   progress?: ProgressFunction
-  dates?: Array<Date>
+  images: imagesTypes.Success
 }
