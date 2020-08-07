@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 
-import { downloadImage } from '../src'
-import * as types from '../src/usecases/download-image/types'
+import { downloadImage } from '../../src'
+import * as types from '../../src/usecases/download-image/types'
 
 const BATCH_SIZE = 5
 

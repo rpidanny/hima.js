@@ -1,7 +1,7 @@
 import mktemp, { DirResult } from 'tmp'
 
-import { downloadImages } from '../src'
-import * as types from '../src/usecases/download-images/types'
+import { downloadImages } from '../../src'
+import * as types from '../../src/usecases/download-images/types'
 
 const BATCH_SIZE = 5
 

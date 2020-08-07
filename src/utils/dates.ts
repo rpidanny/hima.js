@@ -54,7 +54,7 @@ const getDates = (
   let minutes = 0
   const dates = []
   for (let i = 0; i < intervals; i++) {
-    const date = new Date(startDate)
+    const date = new Date(endDate)
     date.setMinutes(minutes)
     dates.push(date)
     minutes -= interval
