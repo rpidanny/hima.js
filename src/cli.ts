@@ -102,12 +102,14 @@ const handleImagesCommand = async (inputOpts: ImagesInputOpts): Promise<void> =>
 async function main(): Promise<void> {
   const rootPath = process.cwd()
 
+  const defaultFile = path.resolve(rootPath, `${new Date().toISOString()}.jpg`)
+
   program.version(packageJson.version)
 
   program
     .command('image [env]')
     .description('Download single image')
-    .option('--out <path>', 'output directory', rootPath)
+    .option('--out <path>', 'Output file', defaultFile)
     .option('--date <date>', 'Date in yyyy/mm/dd hh:mm:ss', 'latest')
     .option('--zoom <level>', 'Zoom level. 1-3 for IR. 1-5 for color', '1')
     .option('--ir', 'Download Infrared Image', false)

@@ -30,7 +30,7 @@ Type: `object`
 | `date`       | `latest`       | `string` / `date` | String in `yyyy/mm/dd hh:mm:ss` or a JS `Date` object.       |
 | `zoom`       | `1`            | `number`          | zoom level. 1-3 for IR and 1-5 for color |
 | `infrared`   | `false`        | `boolean`         | color image or IR image? |
-| `output`     | `./`           | `string`          | Output directory to save image in. |
+| `output`     | `./`           | `string`          | Output file.      |
 | `batchSize`  | `20`           | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. |
 | `debug`      | `false`        | `boolean`         | enable logs?      |
 | `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   |
