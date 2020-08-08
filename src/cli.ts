@@ -191,7 +191,7 @@ async function main(): Promise<void> {
     .option('--end-date <date>', 'Date in yyyy/mm/dd hh:mm:ssZ')
     .option('--interval <minutes>', 'Interval between two images', '10')
     .option('--quality <resolution>', 'Resolution. 480, 720, 1080, 1440, 2160', '1080')
-    .option('--fps <framerate>', 'Framerate of the video. Default is 25', '25')
+    .option('--fps <rate>', 'Framerate of the video', '25')
     .option('--ir', 'Download Infrared Image', false)
     .option('--batch-size', 'How many tiles to download in parallel?', '20')
     .option('--debug', 'Enable debug logs?', false)

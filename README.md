@@ -74,6 +74,7 @@ Options:
   --end-date <date>       Date in yyyy/mm/dd hh:mm:ssZ
   --interval <minutes>    Interval between two images (default: "10")
   --quality <resolution>  Resolution. 480, 720, 1080, 1440, 2160 (default: "1080")
+  --fps <rate>            Framerate of the video (default: "25")
   --ir                    Download Infrared Image (default: false)
   --batch-size            How many tiles to download in parallel?
   --debug                 Enable debug logs? (default: false)
@@ -167,6 +168,7 @@ Type: `object`
 | `endDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
 | `interval`       | `10`            | `number`          | Interval between two images in minutes. (min: 10) |
 | `quality`       | `1080`            | `string`          | Resolution. 480, 720, 1080, 1440, 2160 |
+| `fps`        | `25`            | `number`          | Framerate of the video. |
 | `infrared`   | `false`        | `boolean`         | color image or IR image? |
 | `output`     | `./<currentdate>.mp4`           | `string`          | Output file.      |
 | `batchSize`  | `20`           | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. |
