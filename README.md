@@ -9,6 +9,7 @@
 - Actively Maintained
 - Download Single Image
 - Download Multiple Images between two dates
+- Create Timelapse Video
 
 ## Install
 
@@ -62,6 +63,24 @@ Options:
   -h, --help            display help for command
 ```
 
+```bash
+Usage: cli timelapse [options]
+
+Create timelapse video
+
+Options:
+  --out <path>            Output file (default: "./<currentdate>.mp4")
+  --start-date <date>     Date in yyyy/mm/dd hh:mm:ssZ
+  --end-date <date>       Date in yyyy/mm/dd hh:mm:ssZ
+  --interval <minutes>    Interval between two images (default: "10")
+  --quality <resolution>  Resolution. 480, 720, 1080, 1440, 2160 (default: "1080")
+  --ir                    Download Infrared Image (default: false)
+  --batch-size            How many tiles to download in parallel?
+  --debug                 Enable debug logs? (default: false)
+  --quiet                 Disable all logs? (default: false)
+  -h, --help              display help for command
+```
+
 ### API
 
 #### downloadImage(options?)
@@ -75,7 +94,7 @@ Type: `object`
 | `date`       | `latest`       | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
 | `zoom`       | `1`            | `number`          | zoom level. 1-3 for IR and 1-5 for color |
 | `infrared`   | `false`        | `boolean`         | color image or IR image? |
-| `output`     | `./`           | `string`          | Output file.      |
+| `output`     | `./currentdate.jpg`           | `string`          | Output file.      |
 | `batchSize`  | `20`           | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. |
 | `debug`      | `false`        | `boolean`         | enable logs?      |
 | `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   |
@@ -84,7 +103,7 @@ Type: `object`
 #### Example
 
 ```js
-import { downloadImage } from 'hima'
+import { downloadImage } from '@rpidanny/hima'
 
 downloadImage({
   zoom: 1,
@@ -120,7 +139,7 @@ Type: `object`
 #### Example
 
 ```js
-import { downloadImages } from 'hima'
+import { downloadImages } from '@rpidanny/hima'
 
 downloadImages({
   zoom: 1,
@@ -134,6 +153,44 @@ downloadImages({
   .then(console.log)
   .catch(console.error)
 
+```
+
+#### createTimelapse(options?)
+
+##### options
+
+Type: `object`
+
+| key          | default        | type              | description       |
+| ------------ | -------------- | ----------------- | ----------------- |
+| `startDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
+| `endDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
+| `interval`       | `10`            | `number`          | Interval between two images in minutes. (min: 10) |
+| `quality`       | `1080`            | `string`          | Resolution. 480, 720, 1080, 1440, 2160 |
+| `infrared`   | `false`        | `boolean`         | color image or IR image? |
+| `output`     | `./<currentdate>.mp4`           | `string`          | Output file.      |
+| `batchSize`  | `20`           | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. |
+| `debug`      | `false`        | `boolean`         | enable logs?      |
+| `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   |
+| `progress`   | `None`         | `function`        | A callback function that is called on progress update. Receives two parameters: (`completed`, `total`) |
+
+#### Example
+
+```js
+import { createTimelapse } from '@rpidanny/hima'
+
+createTimelapse({
+  quality: '2160',
+  batchSize: 64,
+  startDate: '2020/02/14 05:00:00Z',
+  endDate: '2020/02/16 19:00:00Z',
+  interval: 10, // 30 minutes
+  debug: true,
+  output: './video.mp4',
+  progress: (c, t) => console.log(`${(c / t) * 100}% complete`),
+})
+  .then(console.log)
+  .catch(console.error)
 ```
 
 ## Development
