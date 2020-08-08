@@ -40,7 +40,10 @@
     "typescript",
     "javascript",
     "cli",
-    "satellite"
+    "satellite",
+    "timelapse",
+    "video",
+    "ffmpeg"
   ],
   "author": "Abhishek <abhishek.rpidanny@gmail.com>",
   "license": "MIT",
