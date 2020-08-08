@@ -1,4 +1,5 @@
 import moment from 'moment'
+import hummanizeDuration from 'humanize-duration'
 
 import config from '../../../config'
 import { Context, Tile } from '../types'
@@ -45,11 +46,11 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
         tiles,
         output: outfile,
       }
-      const startTime = new Date().getMilliseconds()
+      const startTime = new Date().getTime()
       log(`Downloading ${tiles.length} tile(s)`)
       await next()
-      const elapsedTime = new Date().getMilliseconds() - startTime
-      log(`Downloaded ${tiles.length} tiles in ${elapsedTime / 1000}s`)
+      const elapsedTime = new Date().getTime() - startTime
+      log(`Downloaded ${tiles.length} tiles in ${hummanizeDuration(elapsedTime)}`)
     }
   }
 }
