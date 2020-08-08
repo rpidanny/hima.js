@@ -6,10 +6,10 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
   const { options } = ctx
 
   if (options) {
-    const { images, quality, output } = options
+    const { images, quality, output, fps } = options
 
-    if (quality !== undefined && images && output) {
-      await stitchImagesFromDir(images.rootDir, quality, output)
+    if (quality !== undefined && images && output && fps) {
+      await stitchImagesFromDir(images.rootDir, quality, fps, output)
       ctx.output = {
         output,
       }

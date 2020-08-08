@@ -27,6 +27,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
 
       const commonOptions = { ...options }
       delete commonOptions.quality
+      delete commonOptions.fps
       const images = await downloadImages({
         ...commonOptions,
         output: tempDir.name,

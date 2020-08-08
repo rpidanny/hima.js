@@ -21,6 +21,7 @@ const optionsValidationSchema = Joi.object()
     endDate: Joi.alternatives().try(Joi.date(), Joi.string()).required(),
     interval: Joi.number().min(10).default(10),
     quality: Joi.string().valid('480', '720', '1080', '1440', '2160').default('1080'),
+    fps: Joi.number().min(1).default(25),
     infrared: Joi.boolean().default(false),
     output: Joi.string().default('./images'),
     batchSize: Joi.number().min(1).default(20),

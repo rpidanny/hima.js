@@ -20,6 +20,7 @@ export interface RawOptions {
   endDate: string | Date
   interval?: number
   quality?: string
+  fps?: number
   infrared?: boolean
   output?: string
   timeout?: Timeout
@@ -33,6 +34,7 @@ export interface Options {
   endDate: string | Date
   interval?: number
   quality?: string
+  fps?: number
   infrared?: boolean
   output?: string
   timeout?: Timeout

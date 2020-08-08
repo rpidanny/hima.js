@@ -23,12 +23,13 @@ const getZoomFromQuality = (quality: string): number => {
 const stitchImagesFromDir = async (
   inputDir: string,
   resolution: string,
+  fps: number,
   outputFile: string,
 ): Promise<void> => {
   const command = `cat ${path.join(
     inputDir,
     '*.jpg',
-  )} | ffmpeg -f image2pipe -vcodec mjpeg -i - -vcodec hevc -vf scale=-1:${resolution} ${outputFile}`
+  )} | ffmpeg -f image2pipe -framerate ${fps} -vcodec mjpeg -i - -vcodec hevc -vf scale=-1:${resolution} ${outputFile}`
   await asyncExec(command)
 }
 

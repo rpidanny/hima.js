@@ -36,6 +36,7 @@ interface TimelapseInputOpts {
   endDate: string
   interval: number
   quality: string
+  fps: string
   ir: boolean
   batchSize: string
   debug: boolean
@@ -134,6 +135,7 @@ const handleTimelapseCommand = async (inputOpts: TimelapseInputOpts): Promise<vo
       interval: inputOpts.interval,
       output: path.resolve(inputOpts.out),
       quality: inputOpts.quality,
+      fps: parseInt(inputOpts.fps),
       batchSize: (inputOpts.batchSize && parseInt(inputOpts.batchSize)) || 20,
       infrared: inputOpts.ir,
       debug: inputOpts.quiet || inputOpts.debug,
@@ -156,7 +158,7 @@ async function main(): Promise<void> {
   program.version(packageJson.version)
 
   program
-    .command('image')
+    .command('image [command]')
     .description('Download single image')
     .option('--out <path>', 'Output file', defaultFile)
     .option('--date <date>', 'Date in yyyy/mm/dd hh:mm:ssZ', 'latest')
@@ -168,7 +170,7 @@ async function main(): Promise<void> {
     .action(async (_env, options) => await handleImageCommand(options))
 
   program
-    .command('images')
+    .command('images [command]')
     .description('Download multiple image')
     .option('--out <path>', 'Output directory', rootPath)
     .option('--start-date <date>', 'Date in yyyy/mm/dd hh:mm:ssZ')
@@ -182,13 +184,14 @@ async function main(): Promise<void> {
     .action(async (_env, options) => await handleImagesCommand(options))
 
   program
-    .command('timelapse')
+    .command('timelapse [command]')
     .description('Create timelapse video')
     .option('--out <path>', 'Output file', defaultVideo)
     .option('--start-date <date>', 'Date in yyyy/mm/dd hh:mm:ssZ')
     .option('--end-date <date>', 'Date in yyyy/mm/dd hh:mm:ssZ')
     .option('--interval <minutes>', 'Interval between two images', '10')
     .option('--quality <resolution>', 'Resolution. 480, 720, 1080, 1440, 2160', '1080')
+    .option('--fps <framerate>', 'Framerate of the video. Default is 25', '25')
     .option('--ir', 'Download Infrared Image', false)
     .option('--batch-size', 'How many tiles to download in parallel?', '20')
     .option('--debug', 'Enable debug logs?', false)
