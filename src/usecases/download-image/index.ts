@@ -1,6 +1,7 @@
 import optionsValidator from './steps/options-validator'
 import optionsParser from './steps/options-parser'
 import urlGenerator from './steps/url-generator'
+import retryHandler from './steps/retry-handler'
 import downloadTiles from './steps/download-tiles'
 import stitchTiles from './steps/stitch-tiles'
 import { buildImagePipeline } from '../../utils/build-pipeline'
@@ -11,6 +12,7 @@ const executor = buildImagePipeline(
   optionsValidator,
   optionsParser,
   urlGenerator,
+  retryHandler,
   downloadTiles,
   stitchTiles,
 )
