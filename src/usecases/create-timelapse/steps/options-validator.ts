@@ -23,7 +23,7 @@ const optionsValidationSchema = Joi.object()
     quality: Joi.string().valid('480', '720', '1080', '1440', '2160').default('1080'),
     infrared: Joi.boolean().default(false),
     output: Joi.string().default('./images'),
-    batchSize: Joi.number().default(20),
+    batchSize: Joi.number().min(1).default(20),
     timeout: timeoutValidationSchema,
     debug: Joi.boolean().default(false),
     progress: Joi.function().optional(),

@@ -43,4 +43,36 @@ describe('Hima timelapse module', () => {
     }
     tempDir.removeCallback()
   })
+
+  describe('Validation Tests', () => {
+    it('should fail when quality is not one of [480, 720, 1080, 1440, 2160]', async () => {
+      try {
+        await createTimelapse({
+          quality: '360',
+          batchSize: BATCH_SIZE,
+          infrared: true,
+          startDate: '2019/10/21 05:00:00',
+          endDate: '2019/10/21 06:00:00',
+          interval: 30, // 30 minutes
+        })
+      } catch (err) {
+        expect(err.message).toBe('"quality" must be one of [480, 720, 1080, 1440, 2160]')
+      }
+    })
+
+    it('should fail when interval is less than 10', async () => {
+      try {
+        await createTimelapse({
+          quality: '1080',
+          batchSize: BATCH_SIZE,
+          infrared: false,
+          startDate: '2019/10/21 05:00:00',
+          endDate: '2019/10/21 06:00:00',
+          interval: 3, // 3 minutes
+        })
+      } catch (err) {
+        expect(err.message).toBe('"interval" must be larger than or equal to 10')
+      }
+    })
+  })
 })

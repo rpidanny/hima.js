@@ -19,11 +19,15 @@ const optionsValidationSchema = Joi.object()
   .keys({
     startDate: Joi.alternatives().try(Joi.date(), Joi.string()).required(),
     endDate: Joi.alternatives().try(Joi.date(), Joi.string()).required(),
-    interval: Joi.number().default(10),
-    zoom: Joi.number().default(1),
+    interval: Joi.number().min(10).default(10),
+    zoom: Joi.when('infrared', {
+      is: Joi.boolean().valid(true),
+      then: Joi.number().valid(1, 2, 3).default(1),
+      otherwise: Joi.number().valid(1, 2, 3, 4, 5).default(1),
+    }),
     infrared: Joi.boolean().default(false),
     output: Joi.string().default('./images'),
-    batchSize: Joi.number().default(20),
+    batchSize: Joi.number().min(1).default(20),
     timeout: timeoutValidationSchema,
     debug: Joi.boolean().default(false),
     progress: Joi.function().optional(),
