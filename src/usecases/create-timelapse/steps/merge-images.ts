@@ -10,6 +10,9 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
 
     if (quality !== undefined && images && output) {
       await stitchImagesFromDir(images.rootDir, quality, output)
+      ctx.output = {
+        output,
+      }
       await next()
     } else {
       throw new Error('Invalid Input')

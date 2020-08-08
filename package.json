@@ -17,7 +17,7 @@
     "dev": "ts-node examples/create-timelapse.ts",
     "semantic-release": "semantic-release",
     "hima": "npm run build && ./cli.js",
-    "test:test": "npm run lint && jest ./test/unit/himawari.spec.ts"
+    "test:test": "npm run lint && jest ./test/integration/timelapse.spec.ts"
   },
   "husky": {
     "hooks": {
