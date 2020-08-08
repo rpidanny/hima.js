@@ -22,5 +22,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
         maxTimeout: 10000,
       },
     )
+  } else {
+    throw new Error('Invalid Context')
   }
 }

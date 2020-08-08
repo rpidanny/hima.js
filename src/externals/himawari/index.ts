@@ -25,7 +25,7 @@ export const downloadTile = async (
         await pipeline(
           got.stream(tile.url, {
             timeout,
-            retry: 4,
+            retry: 0,
             headers: {
               Connection: 'keep-alive',
             },
