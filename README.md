@@ -123,18 +123,18 @@ downloadImage({
 
 Type: `object`
 
-| key          | default        | type              | description       |
-| ------------ | -------------- | ----------------- | ----------------- |
-| `startDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
-| `endDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
-| `interval`       | `10`            | `number`          | Interval between two images in minutes. (min: 10) |
-| `zoom`       | `1`            | `number`          | zoom level. 1-3 for IR and 1-5 for color |
-| `infrared`   | `false`        | `boolean`         | color image or IR image? |
-| `output`     | `./`           | `string`          | Output file.      |
-| `batchSize`  | `20`           | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. |
-| `debug`      | `false`        | `boolean`         | enable logs?      |
-| `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   |
-| `progress`   | `None`         | `function`        | A callback function that is called on progress update. Receives two parameters: (`completed`, `total`) |
+| key          | default  | type              | description       | required |
+| ------------ | -------- | ----------------- | ----------------- | -------- |
+| `startDate`  | none     | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object. | `yes` |
+| `endDate`    | none     | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object. | `yes` |
+| `interval`   | `10`     | `number`          | Interval between two images in minutes. (min: 10) | `no` |
+| `zoom`       | `1`      | `number`          | zoom level. 1-3 for IR and 1-5 for color | `no` |
+| `infrared`   | `false`  | `boolean`         | color image or IR image? | `no` |
+| `output`     | `./`     | `string`          | Output file.      | `no` |
+| `batchSize`  | `20`     | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. | `no` |
+| `debug`      | `false`  | `boolean`         | enable logs?      | `no` |
+| `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   | `no` |
+| `progress`   | `None`   | `function`        | A callback function that is called on progress update. Receives two parameters: (`completed`, `total`) | `no` |
 
 #### Example
 
@@ -161,19 +161,19 @@ downloadImages({
 
 Type: `object`
 
-| key          | default        | type              | description       |
-| ------------ | -------------- | ----------------- | ----------------- |
-| `startDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
-| `endDate`       | none / required      | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       |
-| `interval`       | `10`            | `number`          | Interval between two images in minutes. (min: 10) |
-| `quality`       | `1080`            | `string`          | Resolution. 480, 720, 1080, 1440, 2160 |
-| `fps`        | `25`            | `number`          | Framerate of the video. |
-| `infrared`   | `false`        | `boolean`         | color image or IR image? |
-| `output`     | `./<currentdate>.mp4`           | `string`          | Output file.      |
-| `batchSize`  | `20`           | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. |
-| `debug`      | `false`        | `boolean`         | enable logs?      |
-| `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   |
-| `progress`   | `None`         | `function`        | A callback function that is called on progress update. Receives two parameters: (`completed`, `total`) |
+| key          | default        | type              | description       | required |
+| ------------ | -------------- | ----------------- | ----------------- | -------- |
+| `startDate`  | none           | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       | `yes` |
+| `endDate`    | none           | `string` / `date` | String in `yyyy/mm/dd hh:mm:ssZ` or a JS `Date` object.       | `yes` |
+| `interval`   | `10`           | `number`          | Interval between two images in minutes. (min: 10) | `no` |
+| `quality`    | `1080`         | `string`          | Resolution. 480, 720, 1080, 1440, 2160 | `no` |
+| `fps`        | `25`           | `number`          | Framerate of the video. | `no` |
+| `infrared`   | `false`        | `boolean`         | color image or IR image? | `no` |
+| `output`     | `./<currentdate>.mp4` | `string`   | Output file.      | `no` |
+| `batchSize`  | `20`           | `number`          | How many tiles to download in parallel? If you get `ECONNRESET`, try lowering the `batchSize`. | `no` |
+| `debug`      | `false`        | `boolean`         | enable logs?      | `no` |
+| `timeout`    | `{ connect: 15000, response: 15000, request: 30000 }` | `object`    | [got timeout](https://github.com/sindresorhus/got#timeout)   | `no` |
+| `progress`   | `None`         | `function`        | A callback function that is called on progress update. Receives two parameters: (`completed`, `total`) | `no` |
 
 #### Example
 
