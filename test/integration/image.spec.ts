@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import { downloadImage } from '../../src'
 import * as types from '../../src/usecases/download-image/types'
 
-const BATCH_SIZE = 5
+const BATCH_SIZE = 50
 
 describe('Hima image module', () => {
   describe('Download color image of zoom 2', () => {

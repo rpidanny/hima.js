@@ -3,7 +3,7 @@ import mktemp, { DirResult } from 'tmp'
 import { downloadImages } from '../../src'
 import * as types from '../../src/usecases/download-images/types'
 
-const BATCH_SIZE = 5
+const BATCH_SIZE = 50
 
 describe('Hima images module', () => {
   describe('Download color images between two dates', () => {
