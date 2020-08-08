@@ -1,5 +1,4 @@
 ![alt text](https://github.com/rpidanny/hima.js/raw/master/banner.png "hima.js")
-> Based off of [himawari.js](https://github.com/jakiestfu/himawari.js/)
 
 ## Highlights
 
