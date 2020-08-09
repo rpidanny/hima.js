@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/rpidanny/hima.js/compare/v1.2.2...v1.2.3) (2020-08-09)
+
+
+### Bug Fixes
+
+* tsc rootDirs and package.json main ([#22](https://github.com/rpidanny/hima.js/issues/22)) ([7daa659](https://github.com/rpidanny/hima.js/commit/7daa659e45a6392b8f99f2737a6054c648169c87))
+
 ## [1.2.2](https://github.com/rpidanny/hima.js/compare/v1.2.1...v1.2.2) (2020-08-09)
 
 
