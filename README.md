@@ -63,7 +63,7 @@ Options:
 ```
 
 ```bash
-Usage: cli timelapse [options]
+Usage: hima timelapse [options]
 
 Create timelapse video
 

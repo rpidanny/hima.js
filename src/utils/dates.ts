@@ -52,7 +52,7 @@ const getDates = (
 
   // Counts and a list
   let minutes = 0
-  const dates = []
+  const dates: Array<Date> = []
   for (let i = 0; i < intervals; i++) {
     const date = new Date(endDate)
     date.setMinutes(minutes)
