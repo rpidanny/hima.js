@@ -6,8 +6,6 @@ import colors from 'colors' // TODO: replace with chalk
 import { downloadImage, downloadImages, createTimelapse } from './index'
 import { ProgressFunction } from './types'
 
-import packageJson from '../package.json'
-
 interface ImageInputOpts {
   out: string
   date: string
@@ -154,8 +152,6 @@ async function main(): Promise<void> {
 
   const defaultFile = path.resolve(rootPath, `${new Date().toISOString()}.jpg`)
   const defaultVideo = path.resolve(rootPath, `${new Date().toISOString()}.mp4`)
-
-  program.version(packageJson.version)
 
   program
     .command('image [command]')
