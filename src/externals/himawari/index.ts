@@ -4,7 +4,7 @@ import got from 'got'
 import { promisify } from 'util'
 import asyncRetry from 'async-retry'
 
-import { zoomLevelMapper, getImageTypeString } from './mappers'
+import { zoomLevelMapper, getImageTypeString, zoomToTilesCountMapping } from './mappers'
 import { Tile } from '../../usecases/download-image/types'
 import { Timeout, LogFunction } from '../../types'
 
@@ -54,4 +54,4 @@ export const downloadTile = async (
   }
 }
 
-export { zoomLevelMapper, getImageTypeString }
+export { zoomLevelMapper, getImageTypeString, zoomToTilesCountMapping }

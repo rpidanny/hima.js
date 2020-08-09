@@ -1,4 +1,4 @@
-import chunk from '../../src/utils/chunk'
+import chunk, { computeBatchConfig } from '../../src/utils/chunk'
 
 describe('Utils: Chunk', () => {
   it('should chunk array into smaller chunks', () => {
@@ -8,5 +8,19 @@ describe('Utils: Chunk', () => {
     expect(chunks.length).toBe(6)
     expect(chunks[0].length).toBe(2)
     expect(chunks[5].length).toBe(1)
+  })
+
+  it('should return proper batch config when bs > tile count', () => {
+    const batchConfig = computeBatchConfig(50, 2)
+
+    expect(batchConfig.image).toBe(16)
+    expect(batchConfig.images).toBe(3)
+  })
+
+  it('should return proper batch config when bs < tile count', () => {
+    const batchConfig = computeBatchConfig(5, 2)
+    console.log(batchConfig)
+    expect(batchConfig.image).toBe(5)
+    expect(batchConfig.images).toBe(1)
   })
 })

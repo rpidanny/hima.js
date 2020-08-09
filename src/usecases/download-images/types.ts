@@ -43,3 +43,8 @@ export interface Options {
   progress?: ProgressFunction
   dates?: Array<Date>
 }
+
+export interface BatchConfig {
+  image: number
+  images: number
+}

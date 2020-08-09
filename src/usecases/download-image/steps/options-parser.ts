@@ -18,7 +18,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
         ...options,
         imageType,
         level,
-        log: getLogger(debug),
+        log: getLogger(debug, 'image'),
       }
 
       const date: Date = await parseDate(ctx.options)

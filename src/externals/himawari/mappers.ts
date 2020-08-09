@@ -14,6 +14,14 @@ export enum colorZoomMapping {
   '20d',
 }
 
+const zoomToTilesCountMapping = {
+  '1': 1,
+  '2': 16,
+  '3': 64,
+  '4': 256,
+  '5': 400,
+}
+
 const imageTypeToZoomMapping = {
   INFRARED_FULL: infraredZoomMapping,
   D531106: colorZoomMapping,
@@ -25,4 +33,4 @@ const zoomLevelMapper = (imageType: string, zoom: number): string => {
   return imageTypeToZoomMapping[imageType][zoom] || config.defaultZoom
 }
 
-export { zoomLevelMapper, getImageTypeString }
+export { zoomLevelMapper, getImageTypeString, zoomToTilesCountMapping }

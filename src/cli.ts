@@ -105,6 +105,7 @@ const handleImageCommand = async (inputOpts: ImageInputOpts): Promise<void> => {
 }
 
 const handleImagesCommand = async (inputOpts: ImagesInputOpts): Promise<void> => {
+  console.log(inputOpts)
   try {
     const { images } = await downloadImages({
       startDate: inputOpts.startDate,
@@ -160,7 +161,7 @@ async function main(): Promise<void> {
     .option('--date <date>', 'Date in yyyy/mm/dd hh:mm:ssZ', 'latest')
     .option('--zoom <level>', 'Zoom level. 1-3 for IR. 1-5 for color', '1')
     .option('--ir', 'Download Infrared Image', false)
-    .option('--batch-size', 'How many tiles to download in parallel?', '20')
+    .option('--batch-size <number>', 'How many tiles to download in parallel?', '20')
     .option('--debug', 'Enable debug logs?', false)
     .option('--quiet', 'Disable all logs?', false)
     .action(async (_env, options) => await handleImageCommand(options))
@@ -174,7 +175,7 @@ async function main(): Promise<void> {
     .option('--interval <minutes>', 'Interval between two images', '10')
     .option('--zoom <level>', 'Zoom level. 1-3 for IR. 1-5 for color', '1')
     .option('--ir', 'Download Infrared Image', false)
-    .option('--batch-size', 'How many tiles to download in parallel?', '20')
+    .option('--batch-size <number>', 'How many tiles to download in parallel?', '20')
     .option('--debug', 'Enable debug logs?', false)
     .option('--quiet', 'Disable all logs?', false)
     .action(async (_env, options) => await handleImagesCommand(options))
@@ -189,7 +190,7 @@ async function main(): Promise<void> {
     .option('--quality <resolution>', 'Resolution. 480, 720, 1080, 1440, 2160', '1080')
     .option('--fps <rate>', 'Framerate of the video', '25')
     .option('--ir', 'Download Infrared Image', false)
-    .option('--batch-size', 'How many tiles to download in parallel?', '20')
+    .option('--batch-size <number>', 'How many tiles to download in parallel?', '20')
     .option('--debug', 'Enable debug logs?', false)
     .option('--quiet', 'Disable all logs?', false)
     .action(async (_env, options) => await handleTimelapseCommand(options))
