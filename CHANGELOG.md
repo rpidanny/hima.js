@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/rpidanny/hima.js/compare/v1.2.3...v1.3.0) (2020-08-09)
+
+
+### Features
+
+* add interval macros ([#24](https://github.com/rpidanny/hima.js/issues/24)) ([d017f3b](https://github.com/rpidanny/hima.js/commit/d017f3be93f5d573c76492d514fa25e0fa3ee2ac))
+
 ## [1.2.3](https://github.com/rpidanny/hima.js/compare/v1.2.2...v1.2.3) (2020-08-09)
 
 
