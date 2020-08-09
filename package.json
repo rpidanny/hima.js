@@ -2,8 +2,8 @@
   "name": "@rpidanny/hima",
   "version": "1.2.2",
   "description": "Download images from Himawari-8 Geo-Stationary Satellite",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
   "bin": {
     "hima": "cli.js"
   },
