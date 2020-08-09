@@ -139,15 +139,16 @@ Type: `object`
 #### Example
 
 ```js
-import { downloadImages } from '@rpidanny/hima'
+import { downloadImages, intervals } from '@rpidanny/hima'
 
 downloadImages({
-  zoom: 1,
-  batchSize: 20,
-  startDate: '2019/10/21 18:30:20Z',
-  endDate: '2019/10/21 20:30:20Z',
-  interval: 30,
+  zoom: 2,
+  batchSize: 5,
+  startDate: '2020/02/14 05:00:00Z',
+  endDate: '2020/03/14 05:00:00Z',
+  interval: intervals.DAY, // 1440 minutes
   debug: true,
+  output: './images',
   progress: (completed, total) => console.log(`Completed ${completed}/${total}`)
 })
   .then(console.log)
@@ -178,14 +179,14 @@ Type: `object`
 #### Example
 
 ```js
-import { createTimelapse } from '@rpidanny/hima'
+import { createTimelapse, intervals } from '@rpidanny/hima'
 
 createTimelapse({
   quality: '2160',
   batchSize: 64,
-  startDate: '2020/02/14 05:00:00Z',
-  endDate: '2020/02/16 19:00:00Z',
-  interval: 10, // 30 minutes
+  startDate: '2019/10/14 05:00:00Z',
+  endDate: '2020/03/14 05:00:00Z',
+  interval: intervals.DAY, // 1440 minutes
   debug: true,
   output: './video.mp4',
   progress: (c, t) => console.log(`${(c / t) * 100}% complete`),
