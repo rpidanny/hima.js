@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/rpidanny/hima.js/compare/v1.3.0...v1.3.1) (2020-08-09)
+
+
+### Performance Improvements
+
+* implement images level batching to increase performance ([#25](https://github.com/rpidanny/hima.js/issues/25)) ([8d2e490](https://github.com/rpidanny/hima.js/commit/8d2e490c780af54bbcdc0826dfed3de758ec702c))
+
 # [1.3.0](https://github.com/rpidanny/hima.js/compare/v1.2.3...v1.3.0) (2020-08-09)
 
 
