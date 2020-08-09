@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/rpidanny/hima.js/compare/v1.2.0...v1.2.1) (2020-08-09)
+
+
+### Bug Fixes
+
+* update package.json main/types ([#20](https://github.com/rpidanny/hima.js/issues/20)) ([a2f720b](https://github.com/rpidanny/hima.js/commit/a2f720bd6681cae5676f9aee71efefd79c539d0b))
+
 # [1.2.0](https://github.com/rpidanny/hima.js/compare/v1.1.0...v1.2.0) (2020-08-08)
 
 
