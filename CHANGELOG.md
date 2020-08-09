@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/rpidanny/hima.js/compare/v1.2.1...v1.2.2) (2020-08-09)
+
+
+### Bug Fixes
+
+* tsc output dir structure ([#21](https://github.com/rpidanny/hima.js/issues/21)) ([31c7cf4](https://github.com/rpidanny/hima.js/commit/31c7cf49c55ef191a694ab2667792b5a76d3d99c))
+
 ## [1.2.1](https://github.com/rpidanny/hima.js/compare/v1.2.0...v1.2.1) (2020-08-09)
 
 
