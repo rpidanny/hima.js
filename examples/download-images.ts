@@ -1,12 +1,13 @@
-import { downloadImages } from '../src'
+import { downloadImages, intervals } from '../src'
 
 downloadImages({
   zoom: 2,
   batchSize: 5,
   startDate: '2020/02/14 05:00:00Z',
-  endDate: '2020/02/14 10:00:00Z',
-  interval: 30, // 30 minutes
-  // debug: true,
+  endDate: '2020/03/14 05:00:00Z',
+  interval: intervals.DAY, // 1440 minutes
+  debug: true,
+  output: './images',
   progress: (c, t) => console.log(`${(c / t) * 100}% complete`),
 })
   .then(console.log)

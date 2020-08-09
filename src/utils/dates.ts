@@ -62,4 +62,13 @@ const getDates = (
   return dates
 }
 
-export { parseDate, getDates }
+const intervals = {
+  HOUR: 60,
+  DAY: 1440,
+  WEEK: 10080,
+  MONTH: 43800,
+  SIX_MONTHS: 262800,
+  YEAR: 525600,
+}
+
+export { parseDate, getDates, intervals }
