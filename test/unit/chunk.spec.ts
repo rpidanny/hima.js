@@ -19,7 +19,6 @@ describe('Utils: Chunk', () => {
 
   it('should return proper batch config when bs < tile count', () => {
     const batchConfig = computeBatchConfig(5, 2)
-    console.log(batchConfig)
     expect(batchConfig.image).toBe(5)
     expect(batchConfig.images).toBe(1)
   })
