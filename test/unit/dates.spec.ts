@@ -7,7 +7,7 @@ import * as imageTypes from '../../src/usecases/download-image/types'
 describe('Utils: Check Date Helpers', () => {
   let log: types.LogFunction
   beforeAll(() => {
-    log = getLogger(true)
+    log = getLogger(true, 'test')
   })
   it('should get latest date', async () => {
     const options: imageTypes.Options = createImageOptions({ date: 'latest', log })
