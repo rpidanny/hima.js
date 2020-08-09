@@ -17,7 +17,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
     const { debug, quality, output } = options
 
     if (quality !== undefined && debug !== undefined && output) {
-      const log = getLogger(debug)
+      const log = getLogger(debug, 'timelapse')
 
       if (await pathExists(output)) {
         throw new Error(`${output} already exists.`)

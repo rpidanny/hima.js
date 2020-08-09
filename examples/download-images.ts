@@ -2,7 +2,7 @@ import { downloadImages, intervals } from '../src'
 
 downloadImages({
   zoom: 2,
-  batchSize: 5,
+  batchSize: 100,
   startDate: '2020/02/14 05:00:00Z',
   endDate: '2020/03/14 05:00:00Z',
   interval: intervals.DAY, // 1440 minutes

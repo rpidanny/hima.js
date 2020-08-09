@@ -19,7 +19,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
       ctx.options = {
         ...options,
         dates,
-        log: getLogger(debug),
+        log: getLogger(debug, 'images'),
       }
       await next()
     } else {

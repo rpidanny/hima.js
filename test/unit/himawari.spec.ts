@@ -9,7 +9,7 @@ import * as imageTypes from '../../src/usecases/download-image/types'
 describe('Externals: Himawari', () => {
   let log: types.LogFunction
   beforeAll(() => {
-    log = getLogger(false)
+    log = getLogger(false, 'test')
   })
 
   afterEach(() => {
