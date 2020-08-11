@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import { downloadImage } from '../../src'
 import * as types from '../../src/usecases/download-image/types'
 
-const BATCH_SIZE = 50
+const BATCH_SIZE = 5
 
 describe('Hima image module', () => {
   describe('Download color image of zoom 2', () => {
@@ -11,7 +11,7 @@ describe('Hima image module', () => {
       const response: types.Success = await downloadImage({
         zoom: 2,
         batchSize: BATCH_SIZE,
-        date: '2019/10/21 18:30:20',
+        date: '2020/01/21 18:30:20Z',
       })
       await fs.remove(response.output)
       return response
