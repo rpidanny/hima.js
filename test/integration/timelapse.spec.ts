@@ -7,15 +7,15 @@ import * as types from '../../src/usecases/create-timelapse/types'
 
 const ensureFile = promisify(fs.ensureFile)
 
-const BATCH_SIZE = 100
+const BATCH_SIZE = 5
 
 describe('Hima timelapse module', () => {
   it('should create a timelapse video without fail', async () => {
     const tempDir: DirResult = mktemp.dirSync({ unsafeCleanup: true })
     const output = `${tempDir.name}/timelapse.mp4`
     const response: types.Success = await createTimelapse({
-      startDate: '2019/10/21 05:00:00',
-      endDate: '2019/10/21 06:00:00',
+      startDate: '2020/02/14 05:00:00Z',
+      endDate: '2020/02/14 06:00:00Z',
       interval: 30,
       quality: '720',
       output,
@@ -31,8 +31,8 @@ describe('Hima timelapse module', () => {
     await ensureFile(output)
     try {
       await createTimelapse({
-        startDate: '2019/10/21 05:00:00',
-        endDate: '2019/10/21 06:00:00',
+        startDate: '2020/02/14 05:00:00Z',
+        endDate: '2020/02/14 06:00:00Z',
         interval: 30,
         quality: '720',
         output,
@@ -51,8 +51,8 @@ describe('Hima timelapse module', () => {
           quality: '360',
           batchSize: BATCH_SIZE,
           infrared: true,
-          startDate: '2019/10/21 05:00:00',
-          endDate: '2019/10/21 06:00:00',
+          startDate: '2020/02/14 05:00:00',
+          endDate: '2020/02/14 06:00:00',
           interval: 30, // 30 minutes
         })
       } catch (err) {
@@ -66,8 +66,8 @@ describe('Hima timelapse module', () => {
           quality: '1080',
           batchSize: BATCH_SIZE,
           infrared: false,
-          startDate: '2019/10/21 05:00:00',
-          endDate: '2019/10/21 06:00:00',
+          startDate: '2020/02/14 05:00:00',
+          endDate: '2020/02/14 06:00:00',
           interval: 3, // 3 minutes
         })
       } catch (err) {
