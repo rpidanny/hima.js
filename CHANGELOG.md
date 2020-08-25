@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/rpidanny/hima.js/compare/v1.3.1...v1.3.2) (2020-08-25)
+
+
+### Bug Fixes
+
+* github token on auto-merge ([#47](https://github.com/rpidanny/hima.js/issues/47)) ([3311c63](https://github.com/rpidanny/hima.js/commit/3311c636f741d82c48ff57ca0a8042d245ab178f))
+
 ## [1.3.1](https://github.com/rpidanny/hima.js/compare/v1.3.0...v1.3.1) (2020-08-09)
 
 
