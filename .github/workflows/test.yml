@@ -3,11 +3,11 @@ name: Node.js Package Lint And Test
 on:
   push:
     branches:
-      - "*"
-      - "!master"
+      - '*'
+      - '!master'
   pull_request:
     branches:
-      - "*"
+      - '*'
 
 jobs:
   lint-and-test:
@@ -59,4 +59,4 @@ jobs:
               pull_number: context.payload.pull_request.number,
               merge_method: 'squash'
             })
-          github-token: ${{github.token}}
+          github-token: ${{secrets.GITHUB_TOKEN}}
