@@ -62,7 +62,6 @@ describe('Hima image module', () => {
         date: new Date(1581638400000),
       })
       await fs.remove(response.output)
-      console.log(response)
       return response
     })
   })
