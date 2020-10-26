@@ -1,10 +1,10 @@
 name: Node.js Package Lint And Test
 
 on:
-  push:
-    branches:
-      - '*'
-      - '!master'
+  # push:
+  #   branches:
+  #     - '*'
+  #     - '!master'
   pull_request:
     branches:
       - '*'
