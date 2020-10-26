@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/rpidanny/hima.js/compare/v1.3.3...v1.4.0) (2020-10-26)
+
+
+### Features
+
+* add nocks on integration test ([#86](https://github.com/rpidanny/hima.js/issues/86)) ([e2a9f4a](https://github.com/rpidanny/hima.js/commit/e2a9f4a856f99fe090a36f200a14ed348e17c66a))
+
 ## [1.3.3](https://github.com/rpidanny/hima.js/compare/v1.3.2...v1.3.3) (2020-09-13)
 
 
