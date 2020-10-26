@@ -4,11 +4,18 @@ import nock from 'nock'
 
 import config from '../../src/config'
 import { downloadImage } from '../../src'
+import { zoomToTilesCountMapping } from '../../src/externals/himawari'
 import * as types from '../../src/usecases/download-image/types'
 
-const BATCH_SIZE = 10
+const BATCH_SIZE = 5
 
 describe('Hima image module', () => {
+  let image: Buffer
+
+  beforeAll(() => {
+    image = fs.readFileSync(path.join(__dirname, '../assets/img.jpg'))
+  })
+
   beforeEach(async () => {
     nock.abortPendingRequests()
     nock.cleanAll()
@@ -26,14 +33,11 @@ describe('Hima image module', () => {
     nock.enableNetConnect()
   })
 
-  describe('Download color image of zoom 2', () => {
-    it('Should run without fail', async () => {
-      nock(config.baseUrl)
-        .get(/.*/)
-        .times(16)
-        .replyWithFile(200, path.join(__dirname, '../assets/img.jpg'), {
-          'Content-Type': 'image/jpg',
-        })
+  describe('Download color images', () => {
+    it(`Should download images with zoom 2`, async () => {
+      nock(config.baseUrl).get(/.*/).times(zoomToTilesCountMapping['2']).reply(200, image, {
+        'Content-Type': 'image/jpg',
+      })
 
       const response: types.Success = await downloadImage({
         zoom: 2,
@@ -46,14 +50,11 @@ describe('Hima image module', () => {
     })
   })
 
-  describe('Download infra-red images of zoom 2', () => {
-    it('Should run without fail', async () => {
-      nock(config.baseUrl)
-        .get(/.*/)
-        .times(16)
-        .replyWithFile(200, path.join(__dirname, '../assets/img.jpg'), {
-          'Content-Type': 'image/jpg',
-        })
+  describe('Download infra-red images', () => {
+    it('Should download image with zoom 2', async () => {
+      nock(config.baseUrl).get(/.*/).times(zoomToTilesCountMapping['2']).reply(200, image, {
+        'Content-Type': 'image/jpg',
+      })
 
       const response: types.Success = await downloadImage({
         zoom: 2,

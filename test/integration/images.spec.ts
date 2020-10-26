@@ -1,5 +1,6 @@
 import path from 'path'
 import nock from 'nock'
+import fs from 'fs-extra'
 import mktemp, { DirResult } from 'tmp'
 
 import config from '../../src/config'
@@ -9,6 +10,12 @@ import * as types from '../../src/usecases/download-images/types'
 const BATCH_SIZE = 5
 
 describe('Hima images module', () => {
+  let image: Buffer
+
+  beforeAll(() => {
+    image = fs.readFileSync(path.join(__dirname, '../assets/img.jpg'))
+  })
+
   beforeEach(async () => {
     nock.abortPendingRequests()
     nock.cleanAll()
@@ -28,12 +35,9 @@ describe('Hima images module', () => {
 
   describe('Download color images between two dates', () => {
     it('should run without fail', async () => {
-      nock(config.baseUrl)
-        .get(/.*/)
-        .times(2)
-        .replyWithFile(200, path.join(__dirname, '../assets/img.jpg'), {
-          'Content-Type': 'image/jpg',
-        })
+      nock(config.baseUrl).get(/.*/).times(2).reply(200, image, {
+        'Content-Type': 'image/jpg',
+      })
 
       const tempDir: DirResult = mktemp.dirSync({ unsafeCleanup: true })
       const response: types.Success = await downloadImages({
