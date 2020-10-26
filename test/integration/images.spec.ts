@@ -1,13 +1,40 @@
+import path from 'path'
+import nock from 'nock'
 import mktemp, { DirResult } from 'tmp'
 
+import config from '../../src/config'
 import { downloadImages } from '../../src'
 import * as types from '../../src/usecases/download-images/types'
 
 const BATCH_SIZE = 5
 
 describe('Hima images module', () => {
+  beforeEach(async () => {
+    nock.abortPendingRequests()
+    nock.cleanAll()
+    nock.disableNetConnect()
+  })
+
+  afterEach(() => {
+    const pending = nock.pendingMocks()
+
+    if (pending.length > 0) {
+      console.log('Pending Nocks: ', pending)
+      throw new Error(`${pending.length} mocks are pending!`)
+    }
+
+    nock.enableNetConnect()
+  })
+
   describe('Download color images between two dates', () => {
     it('should run without fail', async () => {
+      nock(config.baseUrl)
+        .get(/.*/)
+        .times(2)
+        .replyWithFile(200, path.join(__dirname, '../assets/img.jpg'), {
+          'Content-Type': 'image/jpg',
+        })
+
       const tempDir: DirResult = mktemp.dirSync({ unsafeCleanup: true })
       const response: types.Success = await downloadImages({
         startDate: '2020/02/14 05:00:00',
@@ -15,6 +42,7 @@ describe('Hima images module', () => {
         interval: 30, // 30 minutes
         output: tempDir.name,
         batchSize: BATCH_SIZE,
+        debug: false,
         zoom: 1,
       })
       const resp = await tempDir.removeCallback()

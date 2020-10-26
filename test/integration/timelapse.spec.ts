@@ -1,16 +1,43 @@
+import path from 'path'
+import nock from 'nock'
 import mktemp, { DirResult } from 'tmp'
 import fs from 'fs-extra'
 import { promisify } from 'util'
 
+import config from '../../src/config'
 import { createTimelapse } from '../../src'
 import * as types from '../../src/usecases/create-timelapse/types'
 
 const ensureFile = promisify(fs.ensureFile)
 
-const BATCH_SIZE = 5
+const BATCH_SIZE = 10
 
 describe('Hima timelapse module', () => {
+  beforeEach(async () => {
+    nock.abortPendingRequests()
+    nock.cleanAll()
+    nock.disableNetConnect()
+  })
+
+  afterEach(() => {
+    const pending = nock.pendingMocks()
+
+    if (pending.length > 0) {
+      console.log('Pending Nocks: ', pending)
+      throw new Error(`${pending.length} mocks are pending!`)
+    }
+
+    nock.enableNetConnect()
+  })
+
   it('should create a timelapse video without fail', async () => {
+    nock(config.baseUrl)
+      .get(/.*/)
+      .times(32)
+      .replyWithFile(200, path.join(__dirname, '../assets/img.jpg'), {
+        'Content-Type': 'image/jpg',
+      })
+
     const tempDir: DirResult = mktemp.dirSync({ unsafeCleanup: true })
     const output = `${tempDir.name}/timelapse.mp4`
     const response: types.Success = await createTimelapse({
@@ -19,6 +46,7 @@ describe('Hima timelapse module', () => {
       interval: 30,
       quality: '720',
       output,
+      debug: false,
       batchSize: BATCH_SIZE,
     })
     tempDir.removeCallback()
