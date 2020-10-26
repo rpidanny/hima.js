@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/rpidanny/hima.js/compare/v1.4.0...v1.5.0) (2020-10-26)
+
+
+### Features
+
+* add agentkeepalive ([#88](https://github.com/rpidanny/hima.js/issues/88)) ([64f0a25](https://github.com/rpidanny/hima.js/commit/64f0a250bc598f681cdd641184f5629c7fcc9956))
+
 # [1.4.0](https://github.com/rpidanny/hima.js/compare/v1.3.3...v1.4.0) (2020-10-26)
 
 
