@@ -10,9 +10,15 @@ import * as types from '../../src/usecases/create-timelapse/types'
 
 const ensureFile = promisify(fs.ensureFile)
 
-const BATCH_SIZE = 10
+const BATCH_SIZE = 1
 
 describe('Hima timelapse module', () => {
+  let image: Buffer
+
+  beforeAll(() => {
+    image = fs.readFileSync(path.join(__dirname, '../assets/img.jpg'))
+  })
+
   beforeEach(async () => {
     nock.abortPendingRequests()
     nock.cleanAll()
@@ -31,12 +37,9 @@ describe('Hima timelapse module', () => {
   })
 
   it('should create a timelapse video without fail', async () => {
-    nock(config.baseUrl)
-      .get(/.*/)
-      .times(32)
-      .replyWithFile(200, path.join(__dirname, '../assets/img.jpg'), {
-        'Content-Type': 'image/jpg',
-      })
+    nock(config.baseUrl).get(/.*/).times(32).reply(200, image, {
+      'Content-Type': 'image/jpg',
+    })
 
     const tempDir: DirResult = mktemp.dirSync({ unsafeCleanup: true })
     const output = `${tempDir.name}/timelapse.mp4`

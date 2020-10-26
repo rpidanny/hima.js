@@ -3,12 +3,32 @@ import stream from 'stream'
 import got from 'got'
 import { promisify } from 'util'
 import asyncRetry from 'async-retry'
+import HttpAgent, { HttpsAgent } from 'agentkeepalive'
 
 import { zoomLevelMapper, getImageTypeString, zoomToTilesCountMapping } from './mappers'
 import { Tile } from '../../usecases/download-image/types'
 import { Timeout, LogFunction } from '../../types'
 
 const pipeline = promisify(stream.pipeline)
+
+const gotInstange = got.extend({
+  agent: {
+    http: new HttpAgent({
+      keepAlive: true,
+      maxSockets: 50,
+      maxFreeSockets: 10,
+      timeout: 60000, // active socket keepalive for 60 seconds
+      freeSocketTimeout: 30000, // free socket keepalive for 30 seconds
+    }),
+    https: new HttpsAgent({
+      keepAlive: true,
+      maxSockets: 50,
+      maxFreeSockets: 10,
+      timeout: 60000, // active socket keepalive for 60 seconds
+      freeSocketTimeout: 30000, // free socket keepalive for 30 seconds
+    }),
+  },
+})
 
 export const downloadTile = async (
   tile: Tile,
@@ -18,12 +38,14 @@ export const downloadTile = async (
 ): Promise<void> => {
   const file = `${outputPath}/${tile.name}`
 
+  log(`Downloading tile: ${tile.url}`)
+
   try {
-    return await asyncRetry(
+    await asyncRetry(
       async () => {
         const stream = fs.createWriteStream(file)
         await pipeline(
-          got.stream(tile.url, {
+          gotInstange.stream(tile.url, {
             timeout,
             retry: 0,
             headers: {
@@ -45,6 +67,7 @@ export const downloadTile = async (
         maxTimeout: 10000,
       },
     )
+    log(`Downloading tile: ${tile.url} Complete`)
   } catch (err) {
     if (!log) {
       throw err
