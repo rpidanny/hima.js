@@ -40,7 +40,7 @@ export const downloadTile = async (
           }
           log(`#${attempt} Retrying to download ${tile.url} -- ${err.message}`)
         },
-        retries: 5,
+        retries: 2,
         minTimeout: 1000,
         maxTimeout: 10000,
       },

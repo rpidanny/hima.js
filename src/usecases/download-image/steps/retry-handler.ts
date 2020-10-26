@@ -17,7 +17,7 @@ export default async (ctx: Context, next: NextFunction): Promise<void> => {
           }
           options.log(`#${attempt} Retrying to download the image..`)
         },
-        retries: 2,
+        retries: 1,
         minTimeout: 1000,
         maxTimeout: 10000,
       },
