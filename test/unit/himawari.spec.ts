@@ -31,7 +31,7 @@ describe('Externals: Himawari', () => {
     const tmpDir: DirResult = mktmp.dirSync({ unsafeCleanup: true })
     nock('http://himawari.com')
       .get('/test.jpg')
-      .times(4)
+      .times(2)
       .reply(500)
       .get('/test.jpg')
       .delayConnection(5)
@@ -53,7 +53,7 @@ describe('Externals: Himawari', () => {
       response: 30,
     }
     const tmpDir: DirResult = mktmp.dirSync({ unsafeCleanup: true })
-    nock('http://himawari.com').get('/test.jpg').times(5).reply(500)
+    nock('http://himawari.com').get('/test.jpg').times(3).reply(500)
     try {
       await downloadTile(tile, tmpDir.name, timeout, log)
     } catch (err) {
