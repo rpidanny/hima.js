@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/rpidanny/hima.js/compare/v1.5.0...v1.5.1) (2020-10-30)
+
+
+### Bug Fixes
+
+* github-script version [skip ci] ([#101](https://github.com/rpidanny/hima.js/issues/101)) ([602f971](https://github.com/rpidanny/hima.js/commit/602f971554533259aaa2374109fda2e276d1d482))
+
 # [1.5.0](https://github.com/rpidanny/hima.js/compare/v1.4.0...v1.5.0) (2020-10-26)
 
 
