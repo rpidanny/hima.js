@@ -1,5 +1,7 @@
 ![alt text](https://github.com/rpidanny/hima.js/raw/master/banner.png "hima.js")
 
+![gh-actions](https://github.com/rpidanny/hima.js/workflows/Publish/badge.svg) [![codecov](https://codecov.io/gh/rpidanny/hima.js/branch/main/graph/badge.svg)](https://codecov.io/gh/rpidanny/hima.js)
+
 ## Highlights
 
 - Promise API
