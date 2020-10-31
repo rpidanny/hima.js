@@ -1,4 +1,4 @@
-name: Node.js Package Lint, Test and Publish
+name: Publish
 
 on:
   push:
@@ -25,8 +25,11 @@ jobs:
         run: sudo apt update && sudo apt install -y graphicsmagick ffmpeg
       - run: npm ci
       - run: npm run lint
-      - run: npm run test
       - run: npm run build --if-present
+      - run: npm run test
+      - run: curl -s https://codecov.io/bash | bash
+        env:
+          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
       - run: npm run semantic-release
         env:
           GIT_AUTHOR_NAME: ${{secrets.GIT_AUTHOR_NAME}}
