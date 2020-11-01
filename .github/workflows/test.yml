@@ -55,6 +55,7 @@ jobs:
       - name: Merge
         uses: actions/github-script@0.2.0
         with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             github.pullRequests.merge({
               owner: context.payload.repository.owner.login,
