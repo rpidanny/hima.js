@@ -74,7 +74,7 @@
     "eslint": "^7.13.0",
     "husky": "^5.0.9",
     "jest": "^26.2.2",
-    "lint-staged": "^10.2.11",
+    "lint-staged": "^11.0.0",
     "nock": "^13.0.3",
     "prettier": "^2.0.5",
     "semantic-release": "^17.1.1",
