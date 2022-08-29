@@ -57,7 +57,7 @@
   "homepage": "https://github.com/rpidanny/hima.js#readme",
   "devDependencies": {
     "@commitlint/cli": "^12.0.0",
-    "@commitlint/config-conventional": "^12.0.0",
+    "@commitlint/config-conventional": "^17.1.0",
     "@rpidanny/eslint-config-typescript": "^1.0.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
